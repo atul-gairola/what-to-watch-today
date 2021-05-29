@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { PreferenceProvider } from "./contexts/PrefernceContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PreferenceProvider>
+      <App />
+    </PreferenceProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

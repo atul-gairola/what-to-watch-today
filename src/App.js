@@ -2,20 +2,12 @@ import { useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 
+import { usePreference } from "./contexts/PrefernceContext";
+import Genres from "./components/Genres";
+
 function App() {
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          "https://api.themoviedb.org/3/genre/movie/list?api_key=59c3960b67ab82984a2e267ccd195cc6"
-        );
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getData();
-  }, []);
+  const { preferences } = usePreference();
+  console.log(preferences);
 
   return (
     <div className="App">
@@ -32,6 +24,7 @@ function App() {
           checked
         />
       </div>
+      <Genres />
     </div>
   );
 }
