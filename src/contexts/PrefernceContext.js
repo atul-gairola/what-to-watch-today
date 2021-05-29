@@ -8,7 +8,7 @@ export function usePreference() {
 
 export function PreferenceProvider({ children }) {
   const [preferences, setPreferences] = useState({
-    typeOfContent: "",
+    typeOfContent: "show",
     genre: "",
     rating: "",
   });

@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 
 import { usePreference } from "./contexts/PrefernceContext";
 import Genres from "./components/Genres";
