@@ -9,12 +9,29 @@ import endpoints from "../endpoints";
 
 const useStyles = makeStyles({
   genreButton: {
-    padding: "10px 20px",
+    padding: "15px 25px",
     borderRadius: "50px",
-    fontSize: "1.2rem",
+    fontSize: "1.3rem",
     background: "none",
     cursor: "pointer",
     transition: ".5s",
+    // marginRight: "20px",
+    // marginTop: "20px",
+    // minWidth: "200px"
+  },
+  genreContainer: {
+    // display: "flex",
+    // flexWrap: "wrap",
+    // width: "100%",
+    // justifyContent: "center",
+    // alignContent: "center"
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(235px, 1fr))",
+    gridGap: "30px"
+  },
+  genreWrapper: {
+    width: "100%",
+    padding: "0 100px",
   },
 });
 
@@ -30,12 +47,11 @@ function GenreButton({ name, id }) {
 
 function Genres() {
   const classes = useStyles();
-  
+
   const {
     preferences: { typeOfContent },
   } = usePreference();
   const [genres, setGenres] = useState([]);
-
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -55,10 +71,12 @@ function Genres() {
   }, [typeOfContent]);
 
   return (
-    <div className={} >
-      {genres.map((cur) => (
-        <GenreButton name={cur.name} id={cur.id} key={cur.id} />
-      ))}
+    <div className={classes.genreWrapper}>
+      <div className={classes.genreContainer}>
+        {genres.map((cur) => (
+          <GenreButton name={cur.name} id={cur.id} key={cur.id} />
+        ))}
+      </div>
     </div>
   );
 }
