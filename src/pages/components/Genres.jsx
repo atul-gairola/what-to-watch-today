@@ -4,8 +4,8 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/styles";
 
 // internal imports
-import { usePreference } from "../contexts/PrefernceContext";
-import endpoints from "../endpoints";
+import { usePreference } from "../../contexts/PrefernceContext";
+import endpoints from "../../endpoints";
 
 const useStyles = makeStyles({
   genreButton: {
@@ -15,19 +15,11 @@ const useStyles = makeStyles({
     background: "none",
     cursor: "pointer",
     transition: ".5s",
-    // marginRight: "20px",
-    // marginTop: "20px",
-    // minWidth: "200px"
   },
   genreContainer: {
-    // display: "flex",
-    // flexWrap: "wrap",
-    // width: "100%",
-    // justifyContent: "center",
-    // alignContent: "center"
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(235px, 1fr))",
-    gridGap: "30px"
+    gridGap: "30px",
   },
   genreWrapper: {
     width: "100%",

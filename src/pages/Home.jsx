@@ -1,16 +1,15 @@
 import React from "react";
 
-import Nav from "./components/Nav";
-import Genres from "./components/Genres";
+import Layout from "../Layout/Layout";
 import TypeOfContent from "./components/TypeOfContent";
+import Genres from "./components/Genres";
 
 function Home() {
   return (
-    <div>
-      <Nav />
+    <Layout>
       <TypeOfContent />
       <Genres />
-    </div>
+    </Layout>
   );
 }
 
