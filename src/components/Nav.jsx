@@ -14,7 +14,7 @@ function Nav() {
   return (
     <nav className={classes.navContainer}>
       <div>
-        <Logo />
+        <Logo width="59" height="70" viewBox="0 0 59 70" fill="#fff" />
       </div>
     </nav>
   );
