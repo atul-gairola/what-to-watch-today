@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     placeContent: "center",
     color: "#fff",
     fontWeight: 400,
+    height: "100%",
   },
   svg: {
     animation: "$bounce 2s ease-in-out alternate infinite",

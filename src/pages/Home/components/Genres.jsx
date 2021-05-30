@@ -4,8 +4,8 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/styles";
 
 // internal imports
-import { usePreference } from "../../contexts/PrefernceContext";
-import endpoints from "../../endpoints";
+import { usePreference } from "../../../contexts/PrefernceContext";
+import endpoints from "../../../endpoints";
 
 const useStyles = makeStyles({
   genreButton: {

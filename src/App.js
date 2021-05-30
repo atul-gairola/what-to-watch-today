@@ -5,7 +5,8 @@ import axios from "axios";
 import "./App.css";
 
 import { usePreference } from "./contexts/PrefernceContext";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
+import Result from "./pages/Result/Result";
 
 function App() {
   const { preferences } = usePreference();
@@ -27,6 +28,7 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/watch-today/:id" component={Result} />
     </Switch>
   );
 }

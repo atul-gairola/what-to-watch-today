@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-import endpoints from "../../endpoints";
-import { ReactComponent as RandomizeIcon } from "../../images/randomize-icon.svg";
-import { ReactComponent as PreferenceIcon } from "../../images/preference-icon.svg";
+import endpoints from "../../../endpoints";
+import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
+import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
+import Loading from "../../../components/Loading";
 
 const useStyles = makeStyles({
   container: {
@@ -61,10 +63,10 @@ const useStyles = makeStyles({
 function Hero() {
   const [iconColor1, setIconColor1] = useState("#fff");
   const [iconColor2, setIconColor2] = useState("#fff");
-
   const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
+  const history = useHistory();
 
   const getRandomMovieWithoutPreference = async () => {
     setLoading(true);
@@ -116,13 +118,14 @@ function Hero() {
       item = finalData.results[randomArrIndex];
     }
 
-    const getDetailURL = `https://api.themoviedb.org/3/${typeOfContent}/${item.id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
+    // const getDetailURL = `https://api.themoviedb.org/3/${typeOfContent}/${item.id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
 
-    const movieDetails = await axios.get(getDetailURL);
+    // const { data: movieDetails } = await axios.get(getDetailURL);
 
-    console.log(movieDetails);
+    // console.log(movieDetails);
 
     setLoading(false);
+    history.push(`/watch-today/${item.id}`);
   };
 
   const handleMouseHover = (type, num) => {
@@ -136,57 +139,63 @@ function Hero() {
   };
 
   return (
-    <section className={classes.container}>
-      <div className={classes.heroContent}>
-        <h1>Frustrated in deciding what to watch today?</h1>
-        <p>
-          This will help you in that. Get a random movie or show to watch and
-          explore genres you've never seen before. Find hidden gems and widen
-          your spectrum.
-        </p>
-      </div>
-      <div className={classes.buttonContainer}>
-        <div
-          onClick={getRandomMovieWithoutPreference}
-          onMouseEnter={() => handleMouseHover("enter", 1)}
-          onMouseLeave={() => handleMouseHover("leave", 1)}
-          className={classes.button}
-        >
-          <RandomizeIcon
-            width="99"
-            height="92"
-            viewBox="0 0 99 92"
-            fill={iconColor1}
-          />
-          <div>
-            <h3>Surprise Me</h3>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className={classes.container}>
+          <div className={classes.heroContent}>
+            <h1>Frustrated in deciding what to watch today?</h1>
             <p>
-              Feel like having some excitement? Want to see what life brings
-              you? Roll the dice and see what you’re gonna watch today.
+              This will help you in that. Get a random movie or show to watch
+              and explore genres you've never seen before. Find hidden gems and
+              widen your spectrum.
             </p>
           </div>
-        </div>
-        <div
-          onMouseEnter={() => handleMouseHover("enter", 2)}
-          onMouseLeave={() => handleMouseHover("leave", 2)}
-          className={classes.button}
-        >
-          <PreferenceIcon
-            width="100"
-            height="83"
-            viewBox="0 0 100 83"
-            fill={iconColor2}
-          />
-          <div>
-            <h3>I'll tailor it</h3>
-            <p>
-              If you have an idea of what type of content you wanna watch, then
-              tell us your preferences and we'll give you something.
-            </p>
+          <div className={classes.buttonContainer}>
+            <div
+              onClick={getRandomMovieWithoutPreference}
+              onMouseEnter={() => handleMouseHover("enter", 1)}
+              onMouseLeave={() => handleMouseHover("leave", 1)}
+              className={classes.button}
+            >
+              <RandomizeIcon
+                width="99"
+                height="92"
+                viewBox="0 0 99 92"
+                fill={iconColor1}
+              />
+              <div>
+                <h3>Surprise Me</h3>
+                <p>
+                  Feel like having some excitement? Want to see what life brings
+                  you? Roll the dice and see what you’re gonna watch today.
+                </p>
+              </div>
+            </div>
+            <div
+              onMouseEnter={() => handleMouseHover("enter", 2)}
+              onMouseLeave={() => handleMouseHover("leave", 2)}
+              className={classes.button}
+            >
+              <PreferenceIcon
+                width="100"
+                height="83"
+                viewBox="0 0 100 83"
+                fill={iconColor2}
+              />
+              <div>
+                <h3>I'll tailor it</h3>
+                <p>
+                  If you have an idea of what type of content you wanna watch,
+                  then tell us your preferences and we'll give you something.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }
 
