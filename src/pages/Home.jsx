@@ -10,7 +10,7 @@ function Home() {
   return (
     <Layout>
       <Hero />
-      <Loading />
+      {/* <Loading /> */}
       {/* <TypeOfContent />
       <Genres /> */}
     </Layout>
