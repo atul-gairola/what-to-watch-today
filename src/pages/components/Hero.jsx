@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
+import axios from "axios";
 
+import endpoints from "../../endpoints";
 import { ReactComponent as RandomizeIcon } from "../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../images/preference-icon.svg";
 
@@ -60,7 +62,68 @@ function Hero() {
   const [iconColor1, setIconColor1] = useState("#fff");
   const [iconColor2, setIconColor2] = useState("#fff");
 
+  const [loading, setLoading] = useState(false);
+
   const classes = useStyles();
+
+  const getRandomMovieWithoutPreference = async () => {
+    setLoading(true);
+    // select if it will be a  movie or a show
+    const flag = Math.floor(Math.random() * 2);
+    let typeOfContent = flag ? "movie" : "tv";
+
+    // get watch region
+    const watch_region = JSON.parse(
+      localStorage.getItem("country")
+    ).countryCode;
+
+    // randomize genre
+    let genreURL =
+      typeOfContent === "movie"
+        ? endpoints.getMovieGenres
+        : endpoints.getShowGenres;
+
+    const {
+      data: { genres },
+    } = await axios.get(genreURL);
+
+    const genreNum = Math.floor(Math.random() * genres.length);
+
+    const randomGenre = genres[genreNum];
+
+    const randomAvgVotesCount = Math.floor(Math.random() * 8) + 1;
+
+    const url = `https://api.themoviedb.org/3/discover/${typeOfContent}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&include_adult=true&include_video=true&vote_average.gte=${randomAvgVotesCount}&with_genres=${randomGenre.id}&watch_region=${watch_region}`;
+
+    const { data } = await axios.get(url);
+
+    if (data.total_pages === 0) {
+      return await getRandomMovieWithoutPreference();
+    }
+
+    const randomResultPageNum =
+      Math.floor(Math.random() * data.total_pages) + 1;
+    const randomArrIndex = Math.floor(Math.random() * 20);
+
+    let item;
+
+    if (randomResultPageNum === 1) {
+      item = data.results[randomArrIndex];
+    } else {
+      const { data: finalData } = await axios.get(
+        `${url}&page=${randomResultPageNum}`
+      );
+      item = finalData.results[randomArrIndex];
+    }
+
+    const getDetailURL = `https://api.themoviedb.org/3/${typeOfContent}/${item.id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
+
+    const movieDetails = await axios.get(getDetailURL);
+
+    console.log(movieDetails);
+
+    setLoading(false);
+  };
 
   const handleMouseHover = (type, num) => {
     if (num === 1) {
@@ -84,6 +147,7 @@ function Hero() {
       </div>
       <div className={classes.buttonContainer}>
         <div
+          onClick={getRandomMovieWithoutPreference}
           onMouseEnter={() => handleMouseHover("enter", 1)}
           onMouseLeave={() => handleMouseHover("leave", 1)}
           className={classes.button}
