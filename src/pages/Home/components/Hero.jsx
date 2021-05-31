@@ -131,10 +131,10 @@ function Hero() {
     }
 
     setLoading(false);
+    setIconColor1("#fff");
+    setIconColor2("#fff");
 
-    console.log(item);
-
-    // history.push(`/watch-today/${typeOfContent}/${item.id}`);
+    history.push(`/watch-today/${typeOfContent}/${item.id}`);
   };
 
   const handleMouseHover = (type, num) => {
