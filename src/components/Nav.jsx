@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../images/Logo.svg";
 import { makeStyles } from "@material-ui/styles";
 
@@ -14,7 +15,9 @@ function Nav() {
   return (
     <nav className={classes.navContainer}>
       <div>
-        <Logo width="59" height="70" viewBox="0 0 59 70" fill="#fff" />
+        <Link to="/">
+          <Logo width="49" height="60" viewBox="0 0 59 70" fill="#fff" />
+        </Link>
       </div>
     </nav>
   );

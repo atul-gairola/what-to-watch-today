@@ -8,7 +8,6 @@ import Loading from "../../components/Loading";
 function Result() {
   const [loading, setLoading] = useState();
   const [details, setDetails] = useState();
-  const [config, setConfig] = useState();
 
   const { id, type } = useParams();
 
@@ -43,13 +42,8 @@ function Result() {
         `
       );
 
-      // get config
-      const { data: config } = await axios.get(`
-      https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
-
       setDetails(details);
-      setConfig(config);
-      console.log({ details, config, watchProviders, images, videos, credits });
+      console.log({ details, watchProviders, images, videos, credits });
       setLoading(false);
     };
 
