@@ -48,7 +48,16 @@ function Bibliography() {
         >
           set up
         </a>{" "}
-         by ciciliakwo from the Noun Project
+        by ciciliakwo from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=seen&i=3553325"
+        >
+          seen
+        </a>{" "}
+        by Gregor Cresnar from the Noun Project
       </p>
     </div>
   );
