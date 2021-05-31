@@ -125,7 +125,8 @@ function Hero() {
     // console.log(movieDetails);
 
     setLoading(false);
-    history.push(`/watch-today/${item.id}`);
+
+    history.push(`/watch-today/${typeOfContent}/${item.id}`);
   };
 
   const handleMouseHover = (type, num) => {

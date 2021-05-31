@@ -28,7 +28,7 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/watch-today/:id" component={Result} />
+      <Route path="/watch-today/:type/:id" component={Result} />
     </Switch>
   );
 }
