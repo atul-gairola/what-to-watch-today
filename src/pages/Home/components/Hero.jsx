@@ -89,13 +89,25 @@ function Hero() {
       data: { genres },
     } = await axios.get(genreURL);
 
-    const genreNum = Math.floor(Math.random() * genres.length);
+    let genreCount = Math.floor(Math.random() * 8) + 2;
 
-    const randomGenre = genres[genreNum];
+    let randomGenre = [];
+
+    while (genreCount > 0) {
+      const genreNum = Math.floor(Math.random() * genres.length);
+
+      randomGenre.push(genres[genreNum].id);
+      genres.splice(genres[genreNum], 1);
+      genreCount--;
+    }
 
     const randomAvgVotesCount = Math.floor(Math.random() * 8) + 1;
 
-    const url = `https://api.themoviedb.org/3/discover/${typeOfContent}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&include_adult=true&include_video=true&vote_average.gte=${randomAvgVotesCount}&with_genres=${randomGenre.id}&watch_region=${watch_region}`;
+    const url = `https://api.themoviedb.org/3/discover/${typeOfContent}?api_key=${
+      process.env.REACT_APP_TMDB_API_KEY
+    }&language=en-US&include_adult=true&include_video=true&vote_average.gte=${randomAvgVotesCount}&with_genres=${randomGenre.join(
+      "|"
+    )}&watch_region=${watch_region}`;
 
     const { data } = await axios.get(url);
 
@@ -118,15 +130,11 @@ function Hero() {
       item = finalData.results[randomArrIndex];
     }
 
-    // const getDetailURL = `https://api.themoviedb.org/3/${typeOfContent}/${item.id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`;
-
-    // const { data: movieDetails } = await axios.get(getDetailURL);
-
-    // console.log(movieDetails);
-
     setLoading(false);
 
-    history.push(`/watch-today/${typeOfContent}/${item.id}`);
+    console.log(item);
+
+    // history.push(`/watch-today/${typeOfContent}/${item.id}`);
   };
 
   const handleMouseHover = (type, num) => {
