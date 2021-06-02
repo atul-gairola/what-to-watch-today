@@ -59,6 +59,42 @@ function Bibliography() {
         </a>{" "}
         by Gregor Cresnar from the Noun Project
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=star&i=2036708"
+        >
+          Star
+        </a>{" "}
+        Star by Iga from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=info&i=2394143"
+        >
+          info
+        </a>{" "}
+        by Poups from the Noun Project
+      </p>
+      <p>
+      <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=try+again&i=1979657"
+        >
+          circle arrow left
+        </a>{" "}
+         by Paul Verhulst from the Noun Project
+      </p>
+      <p>
+      <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=play&i=1635374"
+        >
+          play
+        </a>{" "}
+         by Gautam Arora from the Noun Project
+      </p>
     </div>
   );
 }

@@ -1,3 +1,7 @@
+# Motivation 💪
+
+This is made as a gift for someone. Everytime we plan on watching something together, most of our time would go into deciding what to watch and what not to. It's such a hectic decision and the last thing one would want to exhaust themselves upon. So I came up with what-to-watch-today. Just sit back and let it give you a something to watch today 👓
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
