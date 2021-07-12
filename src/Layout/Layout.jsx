@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { createUseStyles } from "react-jss";
 
 import Nav from "../components/Nav";
 
-const useStyles = makeStyles({
+const useStyles = createUseStyles({
   wrapper: {
     display: "grid",
     gridTemplateRows: "auto 1fr",

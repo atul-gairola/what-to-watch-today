@@ -1,13 +1,13 @@
 // pacakges
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { makeStyles } from "@material-ui/styles";
+import { createUseStyles } from "react-jss";
 
 // internal imports
 import { usePreference } from "../../../contexts/PrefernceContext";
 import endpoints from "../../../endpoints";
 
-const useStyles = makeStyles({
+const useStyles = createUseStyles({
   genreButton: {
     padding: "15px 25px",
     borderRadius: "50px",

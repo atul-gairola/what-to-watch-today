@@ -1,7 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { createUseStyles } from "react-jss";
 
-const useStyles = makeStyles({
+const useStyles = createUseStyles({
   wrapper: {
     position: "absolute",
   },

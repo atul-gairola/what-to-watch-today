@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { createUseStyles } from "react-jss";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
 
-const useStyles = makeStyles({
+const useStyles = createUseStyles({
   container: {
     display: "grid",
     placeContent: "center",

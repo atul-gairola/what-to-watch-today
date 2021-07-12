@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/styles";
+import { createUseStyles } from "react-jss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import Loading from "../../../components/Loading";
 
-const useStyles = makeStyles({
+const useStyles = createUseStyles({
   container: {
     color: "#fff",
     display: "grid",
