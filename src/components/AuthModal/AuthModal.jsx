@@ -17,10 +17,12 @@ const useStyles = createUseStyles((theme) => ({
     height: "100vh",
   },
   contentContainer: {
-    maxWidth: 500,
+    minWidth: 500,
     position: "absolute",
+    maxHeight: 500,
     top: "50%",
     left: "50%",
+    overflowY: "auto",
     transform: "translate(-50%, -50%)",
     padding: "20px 30px",
     background: theme.color.secondary,
@@ -31,6 +33,7 @@ const useStyles = createUseStyles((theme) => ({
     display: "grid",
     placeItems: "center",
     padding: "40px 0",
+    marginBottom: 40,
     borderBottom: `1px solid ${theme.color.main}`,
   },
   googleButton: {
@@ -47,7 +50,7 @@ const useStyles = createUseStyles((theme) => ({
   },
   tabContainer: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 40,
     "& button": {
       background: "transparent",
       color: theme.color.main,

@@ -4,6 +4,7 @@ export const dark = {
     textPrimary: "#fff",
     secondary: "#282c34",
     main: "#fff",
+    error: "#FF3232",
   },
   button: {
     padding: "9px 24px",
