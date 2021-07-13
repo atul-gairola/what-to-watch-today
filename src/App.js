@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
+
 import { usePreference } from "./contexts/PrefernceContext";
 import Home from "./pages/Home/Home";
 import Result from "./pages/Result/Result";

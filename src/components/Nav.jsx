@@ -4,6 +4,7 @@ import { createUseStyles } from "react-jss";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
 import { useIp } from "../contexts/IpContext";
+import { useAuth } from "../contexts/AuthContext";
 
 const useStyles = createUseStyles((theme) => ({
   navContainer: {
@@ -41,7 +42,11 @@ const useStyles = createUseStyles((theme) => ({
 
 function Nav() {
   const classes = useStyles();
-  const { ipData } = useIp();
+  const { signup } = useAuth();
+
+  function handleSignUp() {
+    signup("atulgairola08@gmail.com", "12345677xvwv");
+  }
 
   return (
     <nav className={classes.navContainer}>
@@ -51,7 +56,7 @@ function Nav() {
         </Link>
       </div>
       <div className={classes.navEndContainer}>
-        <button>Login / Signup</button>
+        <button onClick={handleSignUp}>Login / Signup</button>
       </div>
     </nav>
   );

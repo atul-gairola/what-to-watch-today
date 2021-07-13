@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import endpoints from "../../../endpoints";
+import endpoints from "../../../config/endpoints";
 import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import Loading from "../../../components/Loading";

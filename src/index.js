@@ -9,21 +9,24 @@ import App from "./App";
 import { PreferenceProvider } from "./contexts/PrefernceContext";
 import { ConfigProvider } from "./contexts/ConfigContext";
 import { IpDataProvider } from "./contexts/IpContext";
-import { dark } from "./themes";
+import { AuthProvider } from "./contexts/AuthContext";
+import { dark } from "./config/themes";
 
 ReactDOM.render(
   <React.StrictMode>
-    <IpDataProvider>
-      <PreferenceProvider>
-        <ConfigProvider>
-          <Router>
-            <ThemeProvider theme={dark}>
-              <App />
-            </ThemeProvider>
-          </Router>
-        </ConfigProvider>
-      </PreferenceProvider>
-    </IpDataProvider>
+    <AuthProvider>
+      <IpDataProvider>
+        <PreferenceProvider>
+          <ConfigProvider>
+            <Router>
+              <ThemeProvider theme={dark}>
+                <App />
+              </ThemeProvider>
+            </Router>
+          </ConfigProvider>
+        </PreferenceProvider>
+      </IpDataProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -5,7 +5,7 @@ import { createUseStyles } from "react-jss";
 
 // internal imports
 import { usePreference } from "../../../contexts/PrefernceContext";
-import endpoints from "../../../endpoints";
+import endpoints from "../../../config/endpoints";
 
 const useStyles = createUseStyles({
   genreButton: {
