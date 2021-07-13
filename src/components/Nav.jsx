@@ -42,7 +42,12 @@ const useStyles = createUseStyles((theme) => ({
 }));
 
 function UserItems() {
-  <div></div>;
+  <div>
+    {/* Watched */}
+    {/* Liked */}
+    {/* Preferences */}
+    {/* Theme switch */}
+  </div>;
 }
 
 function Nav() {

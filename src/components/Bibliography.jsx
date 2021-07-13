@@ -101,6 +101,24 @@ function Bibliography() {
         </a>{" "}
         by Tom Walsh from the Noun Project
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=user&i=4053438"
+        >
+          User
+        </a>{" "}
+        by Barudak Lier from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=logout&i=1262646"
+        >
+          logout
+        </a>{" "}
+        by praveen patchu from the Noun Project
+      </p>
       <div>
         Icons made by{" "}
         <a
