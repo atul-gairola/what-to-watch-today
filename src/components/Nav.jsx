@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
-import { useIp } from "../contexts/IpContext";
 import { useAuth } from "../contexts/AuthContext";
 import AuthModal from "./AuthModal/AuthModal";
+import UserMenu from "./UserMenu";
 
 const useStyles = createUseStyles((theme) => ({
   navContainer: {
@@ -41,6 +41,10 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
+function UserItems() {
+  <div></div>;
+}
+
 function Nav() {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
@@ -64,8 +68,17 @@ function Nav() {
           </Link>
         </div>
         <div className={classes.navEndContainer}>
-          {currentUser && <button onClick={handleLogout}>Logout</button>}
-          <button onClick={handleModal}>Login / Signup</button>
+          {/* {currentUser && <button onClick={handleLogout}>Logout</button>} */}
+          {currentUser ? (
+            <div>
+              <UserMenu
+                name={currentUser.name}
+                image={currentUser.profilePicture}
+              />
+            </div>
+          ) : (
+            <button onClick={handleModal}>Login / Signup</button>
+          )}
         </div>
       </nav>
       <AuthModal isOpen={openModal} setOpenModal={setOpenModal} />

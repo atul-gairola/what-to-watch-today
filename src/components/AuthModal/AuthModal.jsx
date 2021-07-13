@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme) => ({
   googleLoginContainer: {
     display: "grid",
     placeItems: "center",
-    padding: "40px 0 60px 0",
+    padding: "40px 0",
     marginBottom: 40,
     borderBottom: `1px solid ${theme.color.main}`,
   },
