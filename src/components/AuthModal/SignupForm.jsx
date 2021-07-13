@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function SignupForm() {
+function SignupForm({ setOpenModal }) {
   const classes = useStyles();
   const theme = useTheme();
   const { signup } = useAuth();
@@ -72,10 +72,9 @@ function SignupForm() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
-    console.log(values);
     try {
-      const result = await signup(values.email, values.password);
-      console.log(result);
+      await signup(values.name, values.email, values.password);
+      return setOpenModal(false);
     } catch (e) {
       console.log(e);
     }

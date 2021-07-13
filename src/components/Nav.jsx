@@ -46,9 +46,8 @@ function Nav() {
   const { currentUser, logout } = useAuth();
   const [openModal, setOpenModal] = useState(false);
 
-  console.log("Current user: ", currentUser);
-
   const handleLogout = async () => {
+    console.log("Logout");
     await logout();
   };
 

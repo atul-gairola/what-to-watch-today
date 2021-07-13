@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { firebaseAuth, googleAuthProvider } from "../config/firebase";
+import { firebaseAuth, googleAuthProvider, db } from "../config/firebase";
 
 const AuthContext = createContext();
 
@@ -11,8 +11,17 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
 
-  function signup(email, password) {
-    return firebaseAuth.createUserWithEmailAndPassword(email, password);
+  function signup(name, email, password) {
+    return firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        return db.collection("users").add({
+          email: email,
+          name: name,
+          authUid: user.user.uid,
+        });
+      })
+      .catch((e) => console.log(e));
   }
 
   function login(email, password) {
@@ -20,7 +29,19 @@ export function AuthProvider({ children }) {
   }
 
   function loginWithGoogle() {
-    return firebaseAuth.signInWithPopup(googleAuthProvider);
+    return firebaseAuth
+      .signInWithPopup(googleAuthProvider)
+      .then((user) => {
+        if (user.additionalUserInfo.isNewUser) {
+          return db.collection("users").add({
+            email: user.user.email,
+            name: user.user.displayName,
+            authUid: user.user.uid,
+            profilePicture: user.user.photoURL,
+          });
+        }
+      })
+      .catch((e) => console.log(e));
   }
 
   function logout() {
@@ -29,8 +50,23 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
-      console.log(user);
-      setCurrentUser(user);
+      if (user) {
+        db.collection("users")
+          .where("authUid", "==", user.uid)
+          .get()
+          .then((querySnapshot) => {
+            let data = {};
+            querySnapshot.forEach((doc) => {
+              data = doc.data();
+              data.id = doc.id;
+            });
+            console.log(data);
+            setCurrentUser(data);
+          })
+          .catch((e) => console.log(e));
+      } else {
+        setCurrentUser(user);
+      }
     });
 
     return unsubscribe;

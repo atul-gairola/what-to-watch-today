@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme) => ({
   googleLoginContainer: {
     display: "grid",
     placeItems: "center",
-    padding: "40px 0",
+    padding: "40px 0 60px 0",
     marginBottom: 40,
     borderBottom: `1px solid ${theme.color.main}`,
   },
@@ -88,8 +88,7 @@ function AuthModal({ isOpen, setOpenModal }) {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await loginWithGoogle();
-      console.log(result);
+      await loginWithGoogle();
       setOpenModal(false);
     } catch (e) {
       console.log(e);
@@ -125,7 +124,13 @@ function AuthModal({ isOpen, setOpenModal }) {
             Signup
           </button>
         </div>
-        <div>{isLogin ? <SigninForm /> : <SignupForm />}</div>
+        <div>
+          {isLogin ? (
+            <SigninForm setOpenModal={setOpenModal} />
+          ) : (
+            <SignupForm setOpenModal={setOpenModal} />
+          )}
+        </div>
       </div>
     </ReactModal>
   );

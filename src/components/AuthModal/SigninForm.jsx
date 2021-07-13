@@ -2,6 +2,8 @@ import React from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+import { useAuth } from "../../contexts/AuthContext";
+
 const useStyles = createUseStyles((theme) => ({
   form: {
     display: "grid",
@@ -39,9 +41,10 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function SignInForm() {
+function SignInForm({setOpenModal}) {
   const classes = useStyles();
   const theme = useTheme();
+  const { login } = useAuth();
 
   const validateSchema = (values) => {
     const errors = {};
@@ -63,7 +66,12 @@ function SignInForm() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
-    console.log(values);
+    try {
+      await login(values.email, values.password);
+      return setOpenModal(false);
+    } catch (e) {
+      console.log(e);
+    }
     setSubmitting(false);
   };
 
