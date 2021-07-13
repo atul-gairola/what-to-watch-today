@@ -5,6 +5,7 @@ import { createUseStyles } from "react-jss";
 import { ReactComponent as Logo } from "../images/Logo.svg";
 import { useIp } from "../contexts/IpContext";
 import { useAuth } from "../contexts/AuthContext";
+import AuthModal from "./AuthModal/AuthModal";
 
 const useStyles = createUseStyles((theme) => ({
   navContainer: {
@@ -49,16 +50,19 @@ function Nav() {
   }
 
   return (
-    <nav className={classes.navContainer}>
-      <div style={{ flexGrow: 1 }}>
-        <Link to="/">
-          <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
-        </Link>
-      </div>
-      <div className={classes.navEndContainer}>
-        <button onClick={handleSignUp}>Login / Signup</button>
-      </div>
-    </nav>
+    <>
+      <nav className={classes.navContainer}>
+        <div style={{ flexGrow: 1 }}>
+          <Link to="/">
+            <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
+          </Link>
+        </div>
+        <div className={classes.navEndContainer}>
+          <button onClick={handleSignUp}>Login / Signup</button>
+        </div>
+      </nav>
+      <AuthModal />
+    </>
   );
 }
 

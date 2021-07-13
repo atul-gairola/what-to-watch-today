@@ -6,7 +6,9 @@ export const dark = {
     main: "#fff",
   },
   button: {
-    borderRadius: 10,
-    padding: "10px 16px",
+    padding: "9px 24px",
+    borderRadius: 7,
+    fontSize: "0.9rem",
+    fontWeight: 500,
   },
 };
