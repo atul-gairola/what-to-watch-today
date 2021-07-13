@@ -119,6 +119,42 @@ function Bibliography() {
         </a>{" "}
         by praveen patchu from the Noun Project
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=heart&i=262347"
+        >
+          Hearts
+        </a>{" "}
+        by Rasmus Thomas Larsen from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=completed&i=652101"
+        >
+          complete
+        </a>{" "}
+        by Gregor Cresnar from the Noun Project{" "}
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=moon&i=4053042"
+        >
+          Moon 
+        </a>{" "}
+        by Barudak Lier from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=sun&i=2535209"
+        >
+          sun
+        </a>{" "}
+         by Nubaia Karim Barsha from the Noun Project{" "}
+      </p>
       <div>
         Icons made by{" "}
         <a

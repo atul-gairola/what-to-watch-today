@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
 import { useAuth } from "../contexts/AuthContext";
 import AuthModal from "./AuthModal/AuthModal";
 import UserMenu from "./UserMenu";
+import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
+import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
+import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
+import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
+import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
   navContainer: {
@@ -39,21 +44,80 @@ const useStyles = createUseStyles((theme) => ({
       },
     },
   },
+  userItem: {
+    width: 45,
+    height: 45,
+    borderRadius: "50%",
+    display: "grid",
+    placeItems: "center",
+    marginRight: 30,
+    border: "2px solid " + theme.color.main,
+    cursor: "pointer",
+    transition: ".7s",
+    filter: "brightness(60%)",
+    "&:hover": {
+      transform: "translateY(-3px)",
+      opacity: 1,
+      filter: "brightness(100%)",
+    },
+  },
+  userLinksContainer: {
+    display: "flex",
+  },
+  toggleButton: {
+    background: "transparent",
+    border: "none",
+    padding: 0,
+    height: "100%",
+    display: "grid",
+    placeItems: "center",
+    marginRight: 50,
+    cursor: "pointer",
+  },
 }));
 
-function UserItems() {
-  <div>
-    {/* Watched */}
-    {/* Liked */}
-    {/* Preferences */}
-    {/* Theme switch */}
-  </div>;
+{
+  /* Watched */
+}
+{
+  /* Liked */
+}
+{
+  /* Preferences */
+}
+{
+  /* Theme switch */
 }
 
 function Nav() {
   const classes = useStyles();
+  const theme = useTheme();
   const { currentUser, logout } = useAuth();
   const [openModal, setOpenModal] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(true);
+
+  function UserItem({ Icon }) {
+    return (
+      <div className={classes.userItem}>
+        <Icon fill="#fff" width={20} height={20} />
+      </div>
+    );
+  }
+
+  function ThemeToggle() {
+    return (
+      <div
+        onClick={() => setDarkTheme((prev) => !prev)}
+        className={classes.toggleButton}
+      >
+        {darkTheme ? (
+          <MoonIcon width={25} height={25} fill={theme.color.main} />
+        ) : (
+          <SunIcon width={32} height={32} fill={theme.color.main} />
+        )}
+      </div>
+    );
+  }
 
   const handleLogout = async () => {
     console.log("Logout");
@@ -75,11 +139,19 @@ function Nav() {
         <div className={classes.navEndContainer}>
           {/* {currentUser && <button onClick={handleLogout}>Logout</button>} */}
           {currentUser ? (
-            <div>
-              <UserMenu
-                name={currentUser.name}
-                image={currentUser.profilePicture}
-              />
+            <div className={classes.userLinksContainer}>
+              <div>
+                <ThemeToggle />
+              </div>
+              <UserItem Icon={PreferenceIcon} />
+              <UserItem Icon={WatchedIcon} />
+              <UserItem Icon={HeartIcon} />
+              <div style={{ marginLeft: 20 }}>
+                <UserMenu
+                  name={currentUser.name}
+                  image={currentUser.profilePicture}
+                />
+              </div>
             </div>
           ) : (
             <button onClick={handleModal}>Login / Signup</button>

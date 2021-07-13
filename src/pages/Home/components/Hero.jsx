@@ -190,7 +190,6 @@ function Hero() {
               <PreferenceIcon
                 width="100"
                 height="83"
-                viewBox="0 0 100 83"
                 fill={iconColor2}
               />
               <div>
