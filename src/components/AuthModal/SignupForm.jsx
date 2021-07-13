@@ -1,6 +1,8 @@
 import React from "react";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+
+import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = createUseStyles((theme) => ({
   form: {
@@ -41,6 +43,8 @@ const useStyles = createUseStyles((theme) => ({
 
 function SignupForm() {
   const classes = useStyles();
+  const theme = useTheme();
+  const { signup } = useAuth();
 
   const validateSchema = (values) => {
     const errors = {};
@@ -57,7 +61,7 @@ function SignupForm() {
         "Your password length should be greater than 8 characters.";
     }
 
-    if (!errors.name) {
+    if (!values.name) {
       errors.name = "Please enter your name.";
     } else if (errors.name > 100) {
       errors.name = "Entered name is too long.";
@@ -69,6 +73,12 @@ function SignupForm() {
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
     console.log(values);
+    try {
+      const result = await signup(values.email, values.password);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
     setSubmitting(false);
   };
 
@@ -95,6 +105,13 @@ function SignupForm() {
               className={classes.input}
               name="name"
               placeholder="Enter your name"
+              style={
+                errors.name && touched.name
+                  ? { borderBottomColor: theme.color.error }
+                  : touched.name && {
+                      borderBottomColor: theme.color.success,
+                    }
+              }
             />
             <ErrorMessage name="name">
               {(msg) => <ShowError msg={msg} />}
@@ -106,6 +123,13 @@ function SignupForm() {
               type="email"
               className={classes.input}
               name="email"
+              style={
+                errors.email && touched.email
+                  ? { borderBottomColor: theme.color.error }
+                  : touched.email && {
+                      borderBottomColor: theme.color.success,
+                    }
+              }
               placeholder="Enter your email"
             />
             <ErrorMessage name="email">
@@ -117,6 +141,13 @@ function SignupForm() {
             <Field
               type="password"
               name="password"
+              style={
+                errors.password && touched.password
+                  ? { borderBottomColor: theme.color.error }
+                  : touched.password && {
+                      borderBottomColor: theme.color.success,
+                    }
+              }
               className={classes.input}
               placeholder="Enter your password"
             />

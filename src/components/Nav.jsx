@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
@@ -43,11 +43,18 @@ const useStyles = createUseStyles((theme) => ({
 
 function Nav() {
   const classes = useStyles();
-  const { signup } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const [openModal, setOpenModal] = useState(false);
 
-  function handleSignUp() {
-    signup("atulgairola08@gmail.com", "12345677xvwv");
-  }
+  console.log("Current user: ", currentUser);
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  const handleModal = () => {
+    setOpenModal(true);
+  };
 
   return (
     <>
@@ -58,10 +65,11 @@ function Nav() {
           </Link>
         </div>
         <div className={classes.navEndContainer}>
-          <button onClick={handleSignUp}>Login / Signup</button>
+          {currentUser && <button onClick={handleLogout}>Logout</button>}
+          <button onClick={handleModal}>Login / Signup</button>
         </div>
       </nav>
-      <AuthModal />
+      <AuthModal isOpen={openModal} setOpenModal={setOpenModal} />
     </>
   );
 }

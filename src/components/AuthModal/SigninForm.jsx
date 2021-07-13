@@ -1,5 +1,5 @@
 import React from "react";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const useStyles = createUseStyles((theme) => ({
@@ -35,12 +35,13 @@ const useStyles = createUseStyles((theme) => ({
     color: theme.color.secondary,
     background: theme.color.main,
     border: "none",
-    margin: "40px 0"
+    margin: "40px 0",
   },
 }));
 
 function SignInForm() {
   const classes = useStyles();
+  const theme = useTheme();
 
   const validateSchema = (values) => {
     const errors = {};
@@ -80,41 +81,57 @@ function SignInForm() {
       validate={validateSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting, errors, touched, values }) => (
-        <Form className={classes.form}>
-          <div>
-            <label for="email">Email</label>
-            <Field
-              type="email"
-              className={classes.input}
-              name="email"
-              placeholder="Enter your email"
-            />
-            <ErrorMessage name="email">
-              {(msg) => <ShowError msg={msg} />}
-            </ErrorMessage>
-          </div>
-          <div>
-            <label for="password">Password</label>
-            <Field
-              type="password"
-              name="password"
-              className={classes.input}
-              placeholder="Enter your password"
-            />
-            <ErrorMessage name="password">
-              {(msg) => <ShowError msg={msg} />}
-            </ErrorMessage>
-          </div>
-          <button
-            type="submit"
-            className={classes.submitButton}
-            disabled={isSubmitting}
-          >
-            Login
-          </button>
-        </Form>
-      )}
+      {({ isSubmitting, errors, touched, values }) => {
+        return (
+          <Form className={classes.form}>
+            <div>
+              <label for="email">Email</label>
+              <Field
+                type="email"
+                className={classes.input}
+                name="email"
+                style={
+                  errors.email && touched.email
+                    ? { borderBottomColor: theme.color.error }
+                    : touched.email && {
+                        borderBottomColor: theme.color.success,
+                      }
+                }
+                placeholder="Enter your email"
+              />
+              <ErrorMessage name="email">
+                {(msg) => <ShowError msg={msg} />}
+              </ErrorMessage>
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <Field
+                type="password"
+                name="password"
+                className={classes.input}
+                placeholder="Enter your password"
+                style={
+                  errors.password && touched.password
+                    ? { borderBottomColor: theme.color.error }
+                    : touched.password && {
+                        borderBottomColor: theme.color.success,
+                      }
+                }
+              />
+              <ErrorMessage name="password">
+                {(msg) => <ShowError msg={msg} />}
+              </ErrorMessage>
+            </div>
+            <button
+              type="submit"
+              className={classes.submitButton}
+              disabled={isSubmitting}
+            >
+              Login
+            </button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }

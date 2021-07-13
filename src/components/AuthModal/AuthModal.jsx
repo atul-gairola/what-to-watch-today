@@ -5,6 +5,7 @@ import ReactModal from "react-modal";
 import SignupForm from "./SignupForm";
 import SigninForm from "./SigninForm";
 import { ReactComponent as GoogleLogo } from "../../images/google-icon.svg";
+import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = createUseStyles((theme) => ({
   overlay: {
@@ -19,7 +20,7 @@ const useStyles = createUseStyles((theme) => ({
   contentContainer: {
     minWidth: 500,
     position: "absolute",
-    maxHeight: 500,
+    maxHeight: "80%",
     top: "50%",
     left: "50%",
     overflowY: "auto",
@@ -28,6 +29,17 @@ const useStyles = createUseStyles((theme) => ({
     background: theme.color.secondary,
     borderRadius: 7,
     border: "none",
+    "&::-webkit-scrollbar": {
+      width: 8,
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "rgba(0,0,0,0.1)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: "20px",
+      width: "100%",
+      background: "rgba(0,0,0,0.7)",
+    },
   },
   googleLoginContainer: {
     display: "grid",
@@ -68,20 +80,32 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function AuthModal({ isOpen }) {
+function AuthModal({ isOpen, setOpenModal }) {
   const classes = useStyles();
   const theme = useTheme();
   const [isLogin, setIsLogin] = useState(true);
+  const { loginWithGoogle } = useAuth();
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await loginWithGoogle();
+      console.log(result);
+      setOpenModal(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <ReactModal
       appElement={document.getElementById("root")}
       className={classes.contentContainer}
       overlayClassName={classes.overlay}
-      isOpen={true}
+      isOpen={isOpen}
+      onRequestClose={() => setOpenModal(false)}
     >
       <div className={classes.googleLoginContainer}>
-        <button className={classes.googleButton}>
+        <button onClick={handleGoogleLogin} className={classes.googleButton}>
           <GoogleLogo width={25} height={25} fill={theme.color.secondary} />
           <span>Sign in with google</span>
         </button>

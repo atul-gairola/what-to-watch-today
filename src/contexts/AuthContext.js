@@ -15,13 +15,12 @@ export function AuthProvider({ children }) {
     return firebaseAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  async function loginWithGoogle() {
-    try {
-      const results = await firebaseAuth.signInWithPopup(googleAuthProvider);
-      console.log(results);
-    } catch (e) {
-      console.log(e);
-    }
+  function login(email, password) {
+    return firebaseAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  function loginWithGoogle() {
+    return firebaseAuth.signInWithPopup(googleAuthProvider);
   }
 
   function logout() {
@@ -42,6 +41,7 @@ export function AuthProvider({ children }) {
     signup,
     loginWithGoogle,
     logout,
+    login,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

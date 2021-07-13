@@ -5,6 +5,7 @@ export const dark = {
     secondary: "#282c34",
     main: "#fff",
     error: "#FF3232",
+    success: "#00c853",
   },
   button: {
     padding: "9px 24px",
