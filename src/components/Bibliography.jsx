@@ -164,6 +164,15 @@ function Bibliography() {
         </a>{" "}
         by Twenty Foo Studio from the Noun Project{" "}
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=close&i=996783"
+        >
+          Close)
+        </a>{" "}
+        by O s t r e a from the Noun Project{" "}
+      </p>
       <div>
         Icons made by{" "}
         <a

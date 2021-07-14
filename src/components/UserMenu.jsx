@@ -5,20 +5,9 @@ import ClickAwayListener from "react-click-away-listener";
 import { ReactComponent as UserIcon } from "../images/userIcon.svg";
 import { ReactComponent as LogoutIcon } from "../images/logoutIcon.svg";
 import { useAuth } from "../contexts/AuthContext";
+import Avatar from "./Avatar";
 
 const useStyles = createUseStyles((theme) => ({
-  avatar: {
-    width: 45,
-    height: 45,
-    borderRadius: "50%",
-    backgroundPosition: "center",
-    backgroundSize: "contain",
-    cursor: "pointer",
-    background: theme.color.main,
-    color: theme.color.secondary,
-    display: "grid",
-    placeItems: "center",
-  },
   container: {
     position: "relative",
   },
@@ -48,19 +37,6 @@ const useStyles = createUseStyles((theme) => ({
     },
   },
 }));
-
-function Avatar({ name, image, onClick }) {
-  const classes = useStyles();
-  return (
-    <div
-      onClick={onClick}
-      className={classes.avatar}
-      style={{ backgroundImage: `url(${image})` }}
-    >
-      {!image && name.slice(0, 1).toUpperCase()}
-    </div>
-  );
-}
 
 function UserMenu({ name, image }) {
   const classes = useStyles();

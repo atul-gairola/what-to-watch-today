@@ -6,6 +6,7 @@ import { useMediaQuery } from "react-responsive";
 import { useAuth } from "../contexts/AuthContext";
 import AuthModal from "./AuthModal/AuthModal";
 import UserMenu from "./UserMenu";
+import SideMenu from "./SideMenu";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
 import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
@@ -20,17 +21,6 @@ const useStyles = createUseStyles((theme) => ({
     padding: "16px 50px",
     display: "flex",
     alignItems: "center",
-  },
-  countryContainer: {
-    display: "grid",
-    gridTemplateColumns: "auto auto",
-    "& img": {
-      width: 40,
-      height: 40,
-      borderRadius: "50%",
-    },
-    alignItems: "center",
-    gridGap: "20px",
   },
   navEndContainer: {
     display: "flex",
@@ -81,8 +71,8 @@ const useStyles = createUseStyles((theme) => ({
   },
   hamburgerButton: {
     cursor: "pointer",
-    transform: "translateY(-2px)"
-  }
+    transform: "translateY(-2px)",
+  },
 }));
 
 function Nav() {
@@ -91,6 +81,7 @@ function Nav() {
   const { currentUser } = useAuth();
 
   const [openModal, setOpenModal] = useState(false);
+  const [openSideMenu, setOpenSideMenu] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
 
   const isMobile = useMediaQuery({ query: "(max-device-width: 650px)" });
@@ -135,7 +126,10 @@ function Nav() {
             <ThemeToggle />
           </div> */}
           {isMobile ? (
-            <div className={classes.hamburgerButton}>
+            <div
+              onClick={() => setOpenSideMenu(true)}
+              className={classes.hamburgerButton}
+            >
               <HamburgerIcon fill="#fff" width={37} />
             </div>
           ) : currentUser ? (
@@ -156,6 +150,7 @@ function Nav() {
         </div>
       </nav>
       <AuthModal isOpen={openModal} setOpenModal={setOpenModal} />
+      {isMobile && openSideMenu && <SideMenu handleModal={handleModal} setOpenSideMenu={setOpenSideMenu} />}
     </>
   );
 }
