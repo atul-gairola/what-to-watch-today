@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import endpoints from "../../../config/endpoints";
 import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import Loading from "../../../components/Loading";
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   container: {
     color: "#fff",
     display: "grid",
@@ -58,7 +59,136 @@ const useStyles = createUseStyles({
       transform: "translateY(-10px)",
     },
   },
-});
+  [`@media (max-width: ${theme.viewports.tablet})`]: {
+    heroContent: {
+      "& > h1": {
+        fontSize: "1.7rem",
+        marginBottom: "20px",
+      },
+      "& > p": {
+        fontSize: "1.3rem",
+      },
+    },
+
+    button: {
+      "& > div > h3": {
+        fontSize: "1.2rem",
+        marginBottom: "3px",
+      },
+      "& > div > p": {
+        fontSize: "14px",
+        maxWidth: "500px",
+      },
+    },
+  },
+  [`@media (max-width: ${theme.viewports.smallTablet})`]: {
+    container: {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto auto",
+      gridGap: 50,
+      height: "100%",
+      alignContent: "center",
+    },
+    heroContent: {
+      textAlign: "center",
+      "& > h1": {
+        fontSize: "1.9rem",
+        marginBottom: "10px",
+      },
+      "& > p": {
+        fontSize: "1.3rem",
+      },
+    },
+    buttonContainer: {
+      justifyItems: "center",
+      gridGap: 50,
+      transform: "none",
+    },
+    button: {
+      "& > div > h3": {
+        fontSize: "1.3rem",
+        marginBottom: "5px",
+      },
+      "& > div > p": {
+        fontSize: "16px",
+        maxWidth: "500px",
+      },
+    },
+  },
+  [`@media (max-width: ${theme.viewports.tablet})`]: {
+    heroContent: {
+      "& > h1": {
+        fontSize: "1.7rem",
+        marginBottom: "20px",
+      },
+      "& > p": {
+        fontSize: "1.3rem",
+      },
+    },
+
+    button: {
+      "& > div > h3": {
+        fontSize: "1.2rem",
+        marginBottom: "3px",
+      },
+      "& > div > p": {
+        fontSize: "14px",
+        maxWidth: "500px",
+      },
+    },
+  },
+  [`@media (max-width: ${theme.viewports.mobile})`]: {
+    container: {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto auto",
+      gridGap: 70,
+      height: "100%",
+      alignContent: "center",
+    },
+    heroContent: {
+      "& > h1": {
+        fontSize: "1.7rem",
+        marginBottom: "20px",
+      },
+      "& > p": {
+        fontSize: "1.2rem",
+      },
+    },
+    buttonContainer: {
+      gridGap: 30,
+    },
+    button: {
+      gridGap: "30px",
+      width: "300px",
+      padding: "15px",
+      gridTemplateColumns: "auto auto",
+      placeContent: "center",
+    },
+  },
+  [`@media (max-width: 400px)`]: {
+    container: {
+      gridGap: 50,
+    },
+    heroContent: {
+      "& > h1": {
+        fontSize: "1.6rem",
+        marginBottom: "15px",
+      },
+      "& > p": {
+        fontSize: "1rem",
+      },
+    },
+    button: {
+      gridGap: "30px",
+      width: "300px",
+      padding: "15px 20px",
+      width: 250,
+      "& > div > h3": {
+        fontSize: "1.1rem",
+      },
+    },
+  },
+}));
 
 function Hero() {
   const [iconColor1, setIconColor1] = useState("#fff");
@@ -67,6 +197,14 @@ function Hero() {
 
   const classes = useStyles();
   const history = useHistory();
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.mobile})`,
+  });
+  const isSmallMobile = useMediaQuery({
+    query: `(max-device-width: 400px)`,
+  });
 
   const getRandomMovieWithoutPreference = async () => {
     setLoading(true);
@@ -169,17 +307,19 @@ function Hero() {
               className={classes.button}
             >
               <RandomizeIcon
-                width="99"
-                height="92"
-                viewBox="0 0 99 92"
+                width={isMobile ? (isSmallMobile ? 40 : 60) : 99}
+                height={isMobile ? (isSmallMobile ? 42 : 62) : 92}
                 fill={iconColor1}
               />
               <div>
                 <h3>Surprise Me</h3>
-                <p>
-                  Feel like having some excitement? Want to see what life brings
-                  you? Roll the dice and see what you’re gonna watch today.
-                </p>
+                {!isMobile && (
+                  <p>
+                    Feel like having some excitement? Want to see what life
+                    brings you? Roll the dice and see what you’re gonna watch
+                    today.
+                  </p>
+                )}
               </div>
             </div>
             <div
@@ -188,16 +328,18 @@ function Hero() {
               className={classes.button}
             >
               <PreferenceIcon
-                width="100"
-                height="83"
+                width={isMobile ? (isSmallMobile ? 40 : 60) : 100}
+                height={isMobile ? (isSmallMobile ? 40 : 60) : 83}
                 fill={iconColor2}
               />
               <div>
                 <h3>I'll tailor it</h3>
-                <p>
-                  If you have an idea of what type of content you wanna watch,
-                  then tell us your preferences and we'll give you something.
-                </p>
+                {!isMobile && (
+                  <p>
+                    If you have an idea of what type of content you wanna watch,
+                    then tell us your preferences and we'll give you something.
+                  </p>
+                )}
               </div>
             </div>
           </div>

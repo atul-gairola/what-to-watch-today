@@ -73,6 +73,16 @@ const useStyles = createUseStyles((theme) => ({
     cursor: "pointer",
     transform: "translateY(-2px)",
   },
+  [`@media(max-width: 400px)`]: {
+    navContainer: {
+      padding: "16px 30px",
+    },
+  },
+  [`@media(max-width: 300px)`]: {
+    navContainer: {
+      padding: "16px 20px",
+    },
+  },
 }));
 
 function Nav() {
@@ -84,7 +94,9 @@ function Nav() {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
 
-  const isMobile = useMediaQuery({ query: `(max-device-width: ${theme.viewports.mobile})` });
+  const isMobile = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.mobile})`,
+  });
 
   function UserItem({ Icon }) {
     return (
@@ -150,7 +162,9 @@ function Nav() {
         </div>
       </nav>
       <AuthModal isOpen={openModal} setOpenModal={setOpenModal} />
-      {isMobile && openSideMenu && <SideMenu handleModal={handleModal} setOpenSideMenu={setOpenSideMenu} />}
+      {isMobile && openSideMenu && (
+        <SideMenu handleModal={handleModal} setOpenSideMenu={setOpenSideMenu} />
+      )}
     </>
   );
 }

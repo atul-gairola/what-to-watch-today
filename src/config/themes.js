@@ -12,6 +12,8 @@ export const dark = {
   viewports: {
     mobile: "650px",
     smallMobile: "550px",
+    tablet: "1200px",
+    smallTablet: "1000px",
   },
   button: {
     padding: "9px 24px",
