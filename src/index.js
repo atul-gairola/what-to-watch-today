@@ -14,19 +14,19 @@ import { dark } from "./config/themes";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <IpDataProvider>
-        <PreferenceProvider>
-          <ConfigProvider>
-            <Router>
-              <ThemeProvider theme={dark}>
+    <ThemeProvider theme={dark}>
+      <AuthProvider>
+        <IpDataProvider>
+          <PreferenceProvider>
+            <ConfigProvider>
+              <Router>
                 <App />
-              </ThemeProvider>
-            </Router>
-          </ConfigProvider>
-        </PreferenceProvider>
-      </IpDataProvider>
-    </AuthProvider>
+              </Router>
+            </ConfigProvider>
+          </PreferenceProvider>
+        </IpDataProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

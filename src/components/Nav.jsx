@@ -80,11 +80,11 @@ function Nav() {
   const theme = useTheme();
   const { currentUser } = useAuth();
 
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
 
-  const isMobile = useMediaQuery({ query: "(max-device-width: 650px)" });
+  const isMobile = useMediaQuery({ query: `(max-device-width: ${theme.viewports.mobile})` });
 
   function UserItem({ Icon }) {
     return (

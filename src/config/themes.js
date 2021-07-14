@@ -9,6 +9,10 @@ export const dark = {
     error: "#FF3232",
     success: "#00c853",
   },
+  viewports: {
+    mobile: "650px",
+    smallMobile: "550px",
+  },
   button: {
     padding: "9px 24px",
     borderRadius: 7,

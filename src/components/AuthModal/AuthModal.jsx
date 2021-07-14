@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import ReactModal from "react-modal";
+import { useMediaQuery } from "react-responsive";
 
 import SignupForm from "./SignupForm";
 import SigninForm from "./SigninForm";
 import { ReactComponent as GoogleLogo } from "../../images/google-icon.svg";
 import { useAuth } from "../../contexts/AuthContext";
+import { ReactComponent as CloseIcon } from "../../images/closeIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
   overlay: {
@@ -14,6 +16,7 @@ const useStyles = createUseStyles((theme) => ({
     position: "absolute",
     top: 0,
     left: 0,
+    zIndex: 100,
     width: "100vw",
     height: "100vh",
   },
@@ -40,6 +43,12 @@ const useStyles = createUseStyles((theme) => ({
       width: "100%",
       background: "rgba(0,0,0,0.7)",
     },
+  },
+  header: {
+    padding: "16px 0",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
   googleLoginContainer: {
     display: "grid",
@@ -78,11 +87,35 @@ const useStyles = createUseStyles((theme) => ({
     background: [theme.color.main, "!important"],
     color: [theme.color.secondary, "!important"],
   },
+  [`@media(max-width: ${theme.viewports.smallMobile})`]: {
+    contentContainer: {
+      width: "100%",
+      height: "100%",
+      maxHeight: "100%",
+      minWidth: 200,
+      padding: "20px 50px",
+    },
+  },
+  [`@media(max-width: 400px)`]: {
+    contentContainer: {
+      padding: "20px 30px",
+    },
+  },
+  [`@media(max-width: 300px)`]: {
+    contentContainer: {
+      padding: "20px",
+    },
+  },
 }));
 
 function AuthModal({ isOpen, setOpenModal }) {
   const classes = useStyles();
   const theme = useTheme();
+  const isSmallMobile = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.smallMobile})`,
+  });
+
+
   const [isLogin, setIsLogin] = useState(true);
   const { loginWithGoogle } = useAuth();
 
@@ -103,6 +136,13 @@ function AuthModal({ isOpen, setOpenModal }) {
       isOpen={isOpen}
       onRequestClose={() => setOpenModal(false)}
     >
+      {isSmallMobile && (
+        <header className={classes.header}>
+          <div style={{ marginTop: 10 }} onClick={() => setOpenModal(false)}>
+            <CloseIcon width={30} height={30} fill={theme.color.main} />
+          </div>
+        </header>
+      )}
       <div className={classes.googleLoginContainer}>
         <button onClick={handleGoogleLogin} className={classes.googleButton}>
           <GoogleLogo width={25} height={25} fill={theme.color.secondary} />
