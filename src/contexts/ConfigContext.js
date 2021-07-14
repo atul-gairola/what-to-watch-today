@@ -12,12 +12,16 @@ export function ConfigProvider({ children }) {
 
   useEffect(() => {
     const fetchConfig = async () => {
-      const { data: config } = await axios.get(`
+      try {
+        const { data: config } = await axios.get(`
         https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
 
-      console.log(config);
+        console.log(config);
 
-      setTmdbConfig(config);
+        setTmdbConfig(config);
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     fetchConfig();

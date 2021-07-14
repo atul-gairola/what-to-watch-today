@@ -12,9 +12,13 @@ export function IpDataProvider({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("http://ip-api.com/json");
-      console.log("Ip data: ", data);
-      setIpData(data);
+      try {
+        const { data } = await axios.get("http://ip-api.com/json");
+        console.log("Ip data: ", data);
+        setIpData(data);
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     fetchData();
