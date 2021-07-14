@@ -66,6 +66,22 @@ const useStyles = createUseStyles((theme) => ({
     placeContent: "center",
     maxHeight: 450,
   },
+  [`@media(max-width: 400px)`]: {
+    header: {
+      padding: "16px 30px",
+    },
+    userSection: {
+      margin: "0 30px",
+    }
+  },
+  [`@media(max-width: 300px)`]: {
+    header: {
+      padding: "16px 20px",
+    },
+    userSection: {
+      margin: "0 20px",
+    }
+  },
 }));
 
 function SideMenu({ setOpenSideMenu, handleModal }) {

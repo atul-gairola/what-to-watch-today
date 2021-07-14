@@ -13,11 +13,12 @@ const useStyles = createUseStyles((theme) => ({
   },
   dropdownMenu: {
     position: "absolute",
-    top: 50,
+    top: 55,
+    boxShadow: "5px 5px 20px rgba(0,0,0,0.3)",
     zIndex: 2,
     right: 0,
-    border: "1px solid " + theme.color.main,
-    background: theme.color.secondary,
+    // border: "1px solid " + theme.color.main,
+    background: theme.color.secondaryHover,
     borderRadius: 7,
   },
   dropdownItem: {
@@ -33,7 +34,8 @@ const useStyles = createUseStyles((theme) => ({
     alignItems: "center",
     transition: ".5s",
     "&:hover": {
-      background: theme.color.secondaryHover,
+      filter: "brightness(200%)",
+      transform: "translateY(-1px)",
     },
   },
 }));

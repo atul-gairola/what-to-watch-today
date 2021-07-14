@@ -80,7 +80,7 @@ function Nav() {
   const theme = useTheme();
   const { currentUser } = useAuth();
 
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
 
