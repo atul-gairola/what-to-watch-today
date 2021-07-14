@@ -1,31 +1,32 @@
 {
   "files": {
-    "main.css": "/what-to-watch-today/static/css/main.fb0f2801.chunk.css",
-    "main.js": "/what-to-watch-today/static/js/main.43127a1a.chunk.js",
-    "main.js.map": "/what-to-watch-today/static/js/main.43127a1a.chunk.js.map",
+    "main.css": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css",
+    "main.js": "/what-to-watch-today/static/js/main.e61ed8a9.chunk.js",
+    "main.js.map": "/what-to-watch-today/static/js/main.e61ed8a9.chunk.js.map",
     "runtime-main.js": "/what-to-watch-today/static/js/runtime-main.f6029183.js",
     "runtime-main.js.map": "/what-to-watch-today/static/js/runtime-main.f6029183.js.map",
-    "static/js/2.896f8ee9.chunk.js": "/what-to-watch-today/static/js/2.896f8ee9.chunk.js",
-    "static/js/2.896f8ee9.chunk.js.map": "/what-to-watch-today/static/js/2.896f8ee9.chunk.js.map",
+    "static/js/2.8c66507a.chunk.js": "/what-to-watch-today/static/js/2.8c66507a.chunk.js",
+    "static/js/2.8c66507a.chunk.js.map": "/what-to-watch-today/static/js/2.8c66507a.chunk.js.map",
     "index.html": "/what-to-watch-today/index.html",
-    "static/css/main.fb0f2801.chunk.css.map": "/what-to-watch-today/static/css/main.fb0f2801.chunk.css.map",
-    "static/js/2.896f8ee9.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.896f8ee9.chunk.js.LICENSE.txt",
+    "static/css/main.41c8f4c2.chunk.css.map": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css.map",
+    "static/js/2.8c66507a.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.8c66507a.chunk.js.LICENSE.txt",
     "static/media/Logo.cade1503.svg": "/what-to-watch-today/static/media/Logo.cade1503.svg",
+    "static/media/closeIcon.586835ad.svg": "/what-to-watch-today/static/media/closeIcon.586835ad.svg",
     "static/media/google-icon.f20ab2d4.svg": "/what-to-watch-today/static/media/google-icon.f20ab2d4.svg",
     "static/media/hamburgerIcon.d74deddb.svg": "/what-to-watch-today/static/media/hamburgerIcon.d74deddb.svg",
     "static/media/heartIcon.d52b3b4a.svg": "/what-to-watch-today/static/media/heartIcon.d52b3b4a.svg",
     "static/media/logoutIcon.3d72b7ce.svg": "/what-to-watch-today/static/media/logoutIcon.3d72b7ce.svg",
     "static/media/moonIcon.bd1b875a.svg": "/what-to-watch-today/static/media/moonIcon.bd1b875a.svg",
     "static/media/preference-icon.144ce595.svg": "/what-to-watch-today/static/media/preference-icon.144ce595.svg",
-    "static/media/randomize-icon.49dde4ae.svg": "/what-to-watch-today/static/media/randomize-icon.49dde4ae.svg",
+    "static/media/randomize-icon.4c08cc2e.svg": "/what-to-watch-today/static/media/randomize-icon.4c08cc2e.svg",
     "static/media/sunIcon.6ac2b28c.svg": "/what-to-watch-today/static/media/sunIcon.6ac2b28c.svg",
     "static/media/userIcon.0bbe5b72.svg": "/what-to-watch-today/static/media/userIcon.0bbe5b72.svg",
     "static/media/watchedIcon.d62d9476.svg": "/what-to-watch-today/static/media/watchedIcon.d62d9476.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f6029183.js",
-    "static/js/2.896f8ee9.chunk.js",
-    "static/css/main.fb0f2801.chunk.css",
-    "static/js/main.43127a1a.chunk.js"
+    "static/js/2.8c66507a.chunk.js",
+    "static/css/main.41c8f4c2.chunk.css",
+    "static/js/main.e61ed8a9.chunk.js"
   ]
 }
