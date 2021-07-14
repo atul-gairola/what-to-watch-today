@@ -9,7 +9,7 @@ import Genres from "./components/Genres";
 function Home() {
   return (
     <Layout>
-      <Hero />
+      {/* <Hero /> */}
       {/* <Loading /> */}
       {/* <TypeOfContent />
       <Genres /> */}

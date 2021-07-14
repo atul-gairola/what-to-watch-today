@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createUseStyles, useTheme } from "react-jss";
+import { useMediaQuery } from "react-responsive";
 
-import { ReactComponent as Logo } from "../images/Logo.svg";
 import { useAuth } from "../contexts/AuthContext";
 import AuthModal from "./AuthModal/AuthModal";
 import UserMenu from "./UserMenu";
+
+import { ReactComponent as Logo } from "../images/Logo.svg";
 import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
 import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
 import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
 import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
 import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
+import { ReactComponent as HamburgerIcon } from "../images/hamburgerIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
   navContainer: {
@@ -30,6 +33,8 @@ const useStyles = createUseStyles((theme) => ({
     gridGap: "20px",
   },
   navEndContainer: {
+    display: "flex",
+    alignItems: "center",
     "& button": {
       padding: "9px 24px",
       borderRadius: 7,
@@ -74,27 +79,21 @@ const useStyles = createUseStyles((theme) => ({
     marginRight: 50,
     cursor: "pointer",
   },
+  hamburgerButton: {
+    cursor: "pointer",
+    transform: "translateY(-2px)"
+  }
 }));
-
-{
-  /* Watched */
-}
-{
-  /* Liked */
-}
-{
-  /* Preferences */
-}
-{
-  /* Theme switch */
-}
 
 function Nav() {
   const classes = useStyles();
   const theme = useTheme();
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
+
   const [openModal, setOpenModal] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
+
+  const isMobile = useMediaQuery({ query: "(max-device-width: 650px)" });
 
   function UserItem({ Icon }) {
     return (
@@ -119,11 +118,6 @@ function Nav() {
     );
   }
 
-  const handleLogout = async () => {
-    console.log("Logout");
-    await logout();
-  };
-
   const handleModal = () => {
     setOpenModal(true);
   };
@@ -137,12 +131,15 @@ function Nav() {
           </Link>
         </div>
         <div className={classes.navEndContainer}>
-          {/* {currentUser && <button onClick={handleLogout}>Logout</button>} */}
-          {currentUser ? (
+          {/* <div>
+            <ThemeToggle />
+          </div> */}
+          {isMobile ? (
+            <div className={classes.hamburgerButton}>
+              <HamburgerIcon fill="#fff" width={37} />
+            </div>
+          ) : currentUser ? (
             <div className={classes.userLinksContainer}>
-              <div>
-                <ThemeToggle />
-              </div>
               <UserItem Icon={PreferenceIcon} />
               <UserItem Icon={WatchedIcon} />
               <UserItem Icon={HeartIcon} />

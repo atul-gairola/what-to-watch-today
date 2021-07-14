@@ -142,7 +142,7 @@ function Bibliography() {
           target="_blank"
           href="https://thenounproject.com/search/?q=moon&i=4053042"
         >
-          Moon 
+          Moon
         </a>{" "}
         by Barudak Lier from the Noun Project
       </p>
@@ -153,7 +153,16 @@ function Bibliography() {
         >
           sun
         </a>{" "}
-         by Nubaia Karim Barsha from the Noun Project{" "}
+        by Nubaia Karim Barsha from the Noun Project{" "}
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=hamburger&i=2685146"
+        >
+          Hamburger
+        </a>{" "}
+        by Twenty Foo Studio from the Noun Project{" "}
       </p>
       <div>
         Icons made by{" "}

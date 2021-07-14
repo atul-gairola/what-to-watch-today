@@ -1,4 +1,5 @@
 {
+  "homepage": "https://atul-gairola.github.io/what-to-watch-today/",
   "name": "what-to-watch-today",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,7 @@
     "react-dom": "^17.0.2",
     "react-jss": "^10.7.1",
     "react-modal": "^3.14.3",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
@@ -22,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
