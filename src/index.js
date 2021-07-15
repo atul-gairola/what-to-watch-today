@@ -19,7 +19,7 @@ ReactDOM.render(
         <IpDataProvider>
           <PreferenceProvider>
             <ConfigProvider>
-              <Router basename={window.location.pathname || ''} >
+              <Router >
                 <App />
               </Router>
             </ConfigProvider>
