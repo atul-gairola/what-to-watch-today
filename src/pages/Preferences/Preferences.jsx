@@ -20,7 +20,9 @@ function Preferences() {
 
   return (
     <Layout>
-      <Stepper currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <div style={{ marginBottom: 50 }}>
+        <Stepper currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      </div>
       <TypeOfContent />
     </Layout>
   );
