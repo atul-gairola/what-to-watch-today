@@ -6,6 +6,7 @@ import Layout from "../../Layout/Layout";
 import Stepper from "./components/Stepper";
 import TypeOfContent from "./components/TypeOfContent";
 import Genres from "./components/Genres";
+import Rating from "./components/Rating";
 
 const useStyles = createUseStyles((theme) => ({}));
 
@@ -13,7 +14,7 @@ function Preferences() {
   const [currentStep, setCurrentStep] = useState(0);
   const [userPreferences, setUserPreferences] = useState({
     type: "movie",
-    ratings: [],
+    rating: 0,
     genres: [],
     ottProviders: [],
   });
@@ -33,6 +34,12 @@ function Preferences() {
       )}
       {currentStep === 1 && (
         <Genres
+          setUserPreferences={setUserPreferences}
+          userPreferences={userPreferences}
+        />
+      )}
+      {currentStep === 2 && (
+        <Rating
           setUserPreferences={setUserPreferences}
           userPreferences={userPreferences}
         />

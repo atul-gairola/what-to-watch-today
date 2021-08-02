@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import endpoints from "../../../config/endpoints";
@@ -322,26 +322,32 @@ function Hero() {
                 )}
               </div>
             </div>
-            <div
-              onMouseEnter={() => handleMouseHover("enter", 2)}
-              onMouseLeave={() => handleMouseHover("leave", 2)}
-              className={classes.button}
+            <Link
+              to="/set-preferences"
+              style={{ color: "inherit", textDecoration: "none" }}
             >
-              <PreferenceIcon
-                width={isMobile ? (isSmallMobile ? 40 : 60) : 100}
-                height={isMobile ? (isSmallMobile ? 40 : 60) : 83}
-                fill={iconColor2}
-              />
-              <div>
-                <h3>I'll tailor it</h3>
-                {!isMobile && (
-                  <p>
-                    If you have an idea of what type of content you wanna watch,
-                    then tell us your preferences and we'll give you something.
-                  </p>
-                )}
+              <div
+                onMouseEnter={() => handleMouseHover("enter", 2)}
+                onMouseLeave={() => handleMouseHover("leave", 2)}
+                className={classes.button}
+              >
+                <PreferenceIcon
+                  width={isMobile ? (isSmallMobile ? 40 : 60) : 100}
+                  height={isMobile ? (isSmallMobile ? 40 : 60) : 83}
+                  fill={iconColor2}
+                />
+                <div>
+                  <h3>I'll tailor it</h3>
+                  {!isMobile && (
+                    <p>
+                      If you have an idea of what type of content you wanna
+                      watch, then tell us your preferences and we'll give you
+                      something.
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
       )}
