@@ -12,6 +12,11 @@ const useStyles = createUseStyles((theme) => ({}));
 
 function Preferences() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [type, setType] = useState("movie");
+  const [ratings, setRatings] = useState([1, 10]);
+  const [genres, setGenres] = useState([]);
+  const [ott, setOTT] = useState([]);
+
   const [userPreferences, setUserPreferences] = useState({
     type: "movie",
     ratings: [0, 10],
@@ -21,17 +26,18 @@ function Preferences() {
 
   const classes = useStyles();
 
+  useEffect(() => {
+    const fetchOTT = async () => {
+      await axios.get();
+    };
+  }, []);
+
   return (
     <Layout>
       <div style={{ marginBottom: 50 }}>
         <Stepper currentStep={currentStep} setCurrentStep={setCurrentStep} />
       </div>
-      {currentStep === 0 && (
-        <TypeOfContent
-          setUserPreferences={setUserPreferences}
-          userPreferences={userPreferences}
-        />
-      )}
+      {currentStep === 0 && <TypeOfContent type={type} setType={setType} />}
       {currentStep === 1 && (
         <Genres
           setUserPreferences={setUserPreferences}
