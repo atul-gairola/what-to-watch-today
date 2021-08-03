@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import clsx from "clsx";
+import React from "react";
 import { createUseStyles, useTheme } from "react-jss";
-import axios from "axios";
 
 const useStyles = createUseStyles((theme) => ({
   container: {
@@ -32,42 +32,73 @@ const useStyles = createUseStyles((theme) => ({
       color: theme.color.secondary,
     },
   },
+  selected: {
+    background: theme.color.main,
+    color: theme.color.secondary,
+    transform: "scale(1.1)",
+  },
 }));
 
-function Genres({ userPreferences, setUserPreferences }) {
-  const [genres, setGenres] = useState([]);
+function GenreButton({ genre, selectedGenres, setSelectedGenres, ...props }) {
+  const classes = useStyles();
+  const { id, name } = genre;
 
+  const handleClick = (e) => {
+    const { name: id } = e.target;
+
+    function removeGenre(id) {
+      const i = selectedGenres.indexOf(id);
+      setSelectedGenres((prev) => {
+        const arr = prev;
+        arr.splice(i, 1);
+        return arr;
+      });
+    }
+
+    function addGenre(id) {
+      setSelectedGenres((prev) => {
+        const arr = prev;
+        arr.push(id);
+        return arr;
+      });
+    }
+
+    selectedGenres.indexOf(id) !== -1 ? removeGenre(id) : addGenre(id);
+  };
+
+  console.log(selectedGenres);
+
+  return (
+    <button
+      onClick={handleClick}
+      className={clsx(
+        classes.button,
+        selectedGenres.indexOf(id) !== -1 && classes.selected
+      )}
+      name={id}
+    >
+      {name}
+    </button>
+  );
+}
+
+function Genres({ genreList, setSelectedGenres, selectedGenres }) {
   const classes = useStyles();
   const theme = useTheme();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/genre/${userPreferences.type}/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-
-      console.log(data);
-      setGenres(data.genres);
-    };
-
-    fetchData();
-  }, []);
-
-  function GenreButton({ genre, ...props }) {
-    const { id, name } = genre;
-    return (
-      <button {...props} className={classes.button} name={id}>
-        {name}
-      </button>
-    );
-  }
 
   return (
     <section className={classes.container}>
       <h3>Choose the mood</h3>
       <div className={classes.buttonContainer}>
-        {genres.length > 0 &&
-          genres.map((cur, i) => <GenreButton key={i} genre={cur} />)}
+        {genreList.length > 0 &&
+          genreList.map((cur, i) => (
+            <GenreButton
+              key={i}
+              genre={cur}
+              selectedGenres={selectedGenres}
+              setSelectedGenres={setSelectedGenres}
+            />
+          ))}
       </div>
     </section>
   );

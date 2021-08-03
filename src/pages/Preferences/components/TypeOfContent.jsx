@@ -43,12 +43,13 @@ const useStyles = createUseStyles({
   },
 });
 
-function TypeOfContent({ type, setType }) {
+function TypeOfContent({ type, setType, setSelectedGenres }) {
   const classes = useStyles();
   const theme = useTheme();
 
   const handleClick = (type) => {
     setType(type);
+    setSelectedGenres([]);
   };
 
   return (
