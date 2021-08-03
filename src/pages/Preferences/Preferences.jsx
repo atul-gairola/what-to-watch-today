@@ -14,7 +14,7 @@ function Preferences() {
   const [currentStep, setCurrentStep] = useState(0);
   const [userPreferences, setUserPreferences] = useState({
     type: "movie",
-    rating: 0,
+    ratings: [0, 10],
     genres: [],
     ottProviders: [],
   });

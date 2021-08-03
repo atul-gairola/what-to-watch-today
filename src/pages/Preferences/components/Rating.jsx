@@ -1,5 +1,8 @@
 import React from "react";
 import { createUseStyles, useTheme } from "react-jss";
+import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
+
+import { SliderRail, Handle, Track, Tick } from "./DoubleSliderComponents";
 
 const useStyles = createUseStyles((theme) => ({
   container: {
@@ -10,94 +13,83 @@ const useStyles = createUseStyles((theme) => ({
       fontSize: "2.5rem",
     },
   },
-
-  rangeInput: {
-    appearance: "none",
-    width: "100%",
-    background: "transparent",
-    // styling thumb
-    "&::-webkit-slider-thumb": {
-      appearance: "none",
-      border: "1px solid #fff",
-      height: 36,
-      width: 16,
-      borderRadius: 3,
-      background: "#fff",
-      cursor: "pointer",
-      marginTop: -14,
-    },
-    "&::-moz-range-thumb": {
-      border: "1px solid #fff",
-      height: 36,
-      width: 16,
-      borderRadius: 3,
-      background: "#fff",
-      cursor: "pointer",
-      marginTop: -14,
-    },
-    "&::-ms-thumb": {
-      border: "1px solid #fff",
-      height: 36,
-      width: 16,
-      borderRadius: 3,
-      background: "#fff",
-      cursor: "pointer",
-      //   marginTop: -14,
-    },
-    // styling track
-    "&::-webkit-slider-runnable-track": {
-      width: "100%",
-      height: 8.4,
-      cursor: "pointer",
-      background: theme.color.main,
-      borderRadius: 1.3,
-    },
-    "&:focus::-webkit-slider-runnable-track": {
-      background: "#367ebd",
-    },
-    "&::-moz-range-track": {
-      width: "100%",
-      height: 8.4,
-      cursor: "pointer",
-      background: theme.color.main,
-      borderRadius: 1.3,
-    },
-    "&::-ms-track": {
-      width: "100%",
-      height: 8.4,
-      cursor: "pointer",
-      background: "transparent",
-      borderColor: "transparent",
-      color: "transparent",
-    },
+  inputContainer: {
+    paddingBottom: 20,
   },
 }));
 
 function Rating({ userPreferences, setUserPreferences }) {
+  const domain = [0, 10];
+
   const classes = useStyles();
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    console.log(value);
+  const handleUpdate = (update) => {
+    console.log("update: ", update);
     setUserPreferences((prev) => ({
       ...prev,
-      rating: Math.round(value),
+      ratings: update,
     }));
+  };
+
+  const sliderStyle = {
+    position: "relative",
+    width: "100%",
   };
 
   return (
     <section className={classes.container}>
       <h3>Choose ratings range</h3>
-      <input
-        className={classes.rangeInput}
-        min={0}
-        max={10}
-        step="0.01"
-        value={userPreferences.rating}
-        onChange={handleChange}
-        type="range"
-        name="rating"
-      />
+      <div>
+        <Slider
+          mode={2}
+          step={1}
+          domain={domain}
+          values={userPreferences.ratings}
+          onUpdate={handleUpdate}
+          rootStyle={sliderStyle}
+        >
+          <Rail>
+            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
+          </Rail>
+          <Handles>
+            {({ handles, getHandleProps }) => (
+              <div className={classes.sliderHandles}>
+                {handles.map((handle) => (
+                  <Handle
+                    key={handle.id}
+                    handle={handle}
+                    domain={domain}
+                    getHandleProps={getHandleProps}
+                  />
+                ))}
+              </div>
+            )}
+          </Handles>
+          <Tracks left={false} right={false}>
+            {({ tracks, getTrackProps }) => (
+              <div className={classes.sliderTracks}>
+                {tracks.map(({ id, source, target }) => (
+                  <Track
+                    key={id}
+                    source={source}
+                    target={target}
+                    getTrackProps={getTrackProps}
+                  />
+                ))}
+              </div>
+            )}
+          </Tracks>
+          <Ticks count={10}>
+            {({ ticks }) => (
+              <div>
+                {ticks.map((tick) => (
+                  <Tick key={tick.id} tick={tick} count={ticks.length} />
+                ))}
+              </div>
+            )}
+          </Ticks>
+        </Slider>
+      </div>
     </section>
   );
 }
