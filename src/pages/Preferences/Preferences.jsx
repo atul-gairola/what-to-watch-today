@@ -28,11 +28,7 @@ function Preferences() {
 
   const classes = useStyles();
 
-  useEffect(() => {
-    const fetchOTT = async () => {
-      await axios.get();
-    };
-  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
