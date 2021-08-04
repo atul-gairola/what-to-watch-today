@@ -18,17 +18,13 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Rating({ userPreferences, setUserPreferences }) {
+function Rating({ ratings, setRatings }) {
   const domain = [0, 10];
 
   const classes = useStyles();
 
   const handleUpdate = (update) => {
-    console.log("update: ", update);
-    setUserPreferences((prev) => ({
-      ...prev,
-      ratings: update,
-    }));
+    setRatings(update);
   };
 
   const sliderStyle = {
@@ -44,7 +40,7 @@ function Rating({ userPreferences, setUserPreferences }) {
           mode={2}
           step={1}
           domain={domain}
-          values={userPreferences.ratings}
+          values={ratings}
           onUpdate={handleUpdate}
           rootStyle={sliderStyle}
         >

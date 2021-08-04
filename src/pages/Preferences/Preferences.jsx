@@ -26,10 +26,6 @@ function Preferences() {
     ottProviders: [],
   });
 
-  const classes = useStyles();
-
-
-
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
@@ -63,6 +59,8 @@ function Preferences() {
       )}
       {currentStep === 2 && (
         <Rating
+          ratings={ratings}
+          setRatings={setRatings}
           setUserPreferences={setUserPreferences}
           userPreferences={userPreferences}
         />
