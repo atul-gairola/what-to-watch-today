@@ -17,7 +17,8 @@ const useStyles = createUseStyles((theme) => ({
     transform: "translate(0%, -50%)",
     borderRadius: 7,
     pointerEvents: "none",
-    background: "rgb(155,155,155)",
+    background: theme.color.mainHover,
+    opacity: 0.5
   },
   handle1: {
     position: "absolute",
@@ -121,7 +122,7 @@ export function Track({ source, target, getTrackProps, disabled = false }) {
 export function Tick({ tick, count, format = (d) => d }) {
   return (
     <div>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           marginTop: 14,
@@ -130,12 +131,12 @@ export function Tick({ tick, count, format = (d) => d }) {
           backgroundColor: "rgb(200,200,200)",
           left: `${tick.percent}%`,
         }}
-      />
+      /> */}
       <div
         style={{
           position: "absolute",
           marginTop: 22,
-          fontSize: 10,
+          fontSize: 16,
           textAlign: "center",
           marginLeft: `${-(100 / count) / 2}%`,
           width: `${100 / count}%`,

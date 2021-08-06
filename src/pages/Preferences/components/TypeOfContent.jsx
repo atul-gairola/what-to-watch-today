@@ -1,22 +1,21 @@
 import React from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import clsx from "clsx";
+import { useMediaQuery } from "react-responsive";
 
 import { ReactComponent as MovieIcon } from "../../../images/movieIcon.svg";
 import { ReactComponent as ShowIcon } from "../../../images/showIcon.svg";
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   container: {
-    display: "grid",
+    display: "flex",
+    flexFlow: "column",
     placeContent: "center",
-    gridGap: 100,
-    "& > h3": {
-      fontSize: "2.5rem",
-    },
   },
   buttonContainer: {
     display: "grid",
     width: "100%",
+    flexGrow: 1,
     gridTemplateColumns: "auto auto",
     placeContent: "center",
     gridGap: 200,
@@ -41,11 +40,45 @@ const useStyles = createUseStyles({
       transform: "scale(1.2)",
     },
   },
-});
+  [`@media (max-width: ${theme.viewports.smallTablet})`]: {
+    buttonContainer: {
+      display: "grid",
+      width: "100%",
+      flexGrow: 1,
+      gridTemplateColumns: "auto",
+      placeContent: "center",
+      gridGap: 80,
+    },
+    optionButton: {
+      display: "grid",
+      justifyItems: "center",
+      cursor: "pointer",
+      gridGap: 10,
+      transition: "0.7s",
+      "& p": {
+        fontWeight: 500,
+        fontSize: "1rem",
+      },
+      "&:hover": {
+        transform: "scale(1.1)",
+      },
+    },
+    selected: {
+      transform: "scale(1.2)",
+      "&:hover": {
+        transform: "scale(1.2)",
+      },
+    },
+  },
+}));
 
 function TypeOfContent({ type, setType, setSelectedGenres }) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const isSmallTablet = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.smallTablet})`,
+  });
 
   const handleClick = (type) => {
     setType(type);
@@ -54,7 +87,6 @@ function TypeOfContent({ type, setType, setSelectedGenres }) {
 
   return (
     <section className={classes.container}>
-      <h3>Which content type do you feel like watching today?</h3>
       <div className={classes.buttonContainer}>
         <div
           onClick={() => handleClick("movie")}
@@ -64,7 +96,10 @@ function TypeOfContent({ type, setType, setSelectedGenres }) {
           )}
         >
           <div>
-            <MovieIcon width={183} fill={theme.color.main} />
+            <MovieIcon
+              width={isSmallTablet ? 100 : 183}
+              fill={theme.color.main}
+            />
           </div>
           <p>Movie</p>
         </div>
@@ -76,7 +111,10 @@ function TypeOfContent({ type, setType, setSelectedGenres }) {
           )}
         >
           <div>
-            <ShowIcon width={208} fill={theme.color.main} />
+            <ShowIcon
+              width={isSmallTablet ? 100 : 208}
+              fill={theme.color.main}
+            />
           </div>
           <p>Show</p>
         </div>

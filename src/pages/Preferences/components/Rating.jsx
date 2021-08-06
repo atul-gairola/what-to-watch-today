@@ -34,8 +34,7 @@ function Rating({ ratings, setRatings }) {
 
   return (
     <section className={classes.container}>
-      <h3>Choose ratings range</h3>
-      <div>
+      <div style={{ width: "80vw" }}>
         <Slider
           mode={2}
           step={1}

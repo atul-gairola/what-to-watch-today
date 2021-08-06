@@ -5,6 +5,8 @@ import GenreButton from "./GenreButton";
 
 const useStyles = createUseStyles((theme) => ({
   container: {
+    display: "grid",
+    alignContent: "center",
     "& > h3": {
       fontSize: "2.5rem",
       textAlign: "center",
@@ -24,10 +26,6 @@ const useStyles = createUseStyles((theme) => ({
 function Genres({ genreList, setSelectedGenres, selectedGenres }) {
   const classes = useStyles();
   const theme = useTheme();
-
-  // useEffect(() => {
-  //   console.log("Genres updated: ", selectedGenres);
-  // }, [selectedGenres]);
 
   const handleClick = (e) => {
     const { name: id } = e.target;
@@ -52,7 +50,6 @@ function Genres({ genreList, setSelectedGenres, selectedGenres }) {
 
   return (
     <section className={classes.container}>
-      <h3>Choose the mood</h3>
       <div className={classes.buttonContainer}>
         {genreList.length > 0 &&
           genreList.map((cur, i) => (
