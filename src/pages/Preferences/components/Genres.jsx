@@ -19,7 +19,20 @@ const useStyles = createUseStyles((theme) => ({
     gridTemplateColumns: "repeat(auto-fit, minmax(150px, 250px))",
     gridColumnGap: 50,
     gridRowGap: 20,
+    overflow: "auto",
     placeContent: "center",
+  },
+  [`@media (max-width: ${theme.viewports.tablet})`]: {
+    container: {
+      marginTop: 40,
+      display: "block",
+    },
+    buttonContainer: {
+      placeContent: "normal",
+      justifyContent: "center",
+      height: "50vh",
+      padding: "10px 0"
+    },
   },
 }));
 
