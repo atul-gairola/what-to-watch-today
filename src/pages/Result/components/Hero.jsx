@@ -4,6 +4,7 @@ import { useConfig } from "../../../contexts/ConfigContext";
 
 import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
+import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
@@ -30,12 +31,35 @@ const useStyles = createUseStyles((theme) => ({
   undername: {
     color: "#B8C4DB",
     fontSize: 15,
+    marginTop: -10,
     "& > span": {
-      marginRight: 5,
+      marginRight: 8,
     },
   },
   rating: {
     color: "#FFE600",
+    marginTop: 4,
+  },
+  imdb: {
+    fontWeight: 700,
+    "& > span": {
+      color: "#FAB446",
+    },
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  overview: {
+    fontWeight: 300,
+  },
+  tagline: {
+    marginTop: 16,
+    "& > h3": {
+      fontSize: 16,
+    },
+    "& > p": {
+      fontWeight: 300,
+      fontSize: 16,
+    },
   },
   watchNow: {
     padding: "8px 22px",
@@ -46,7 +70,7 @@ const useStyles = createUseStyles((theme) => ({
     border: "none",
     fontWeight: 600,
     fontSize: 16,
-    marginRight: 20
+    marginRight: 30,
   },
   tryAnother: {
     color: theme.color.main,
@@ -56,6 +80,10 @@ const useStyles = createUseStyles((theme) => ({
     fontSize: 15,
     paddingBottom: 8,
     borderBottom: `1px solid ${theme.color.main}`,
+    display: "grid",
+    gridTemplateColumns: "auto auto",
+    gridGap: 5,
+    alignItems: "center",
   },
 }));
 
@@ -67,7 +95,7 @@ function Hero({ details, watchProviders }) {
   return (
     <section
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(40, 44, 52, 0) 10.68%, #282C34 67.34%), linear-gradient(179.88deg, #000000 0.11%, rgba(40, 44, 52, 0.52) 66.78%), url("${
+        backgroundImage: `linear-gradient(180deg, rgba(40, 44, 52, 0) 10%, #282C34 100.3%), linear-gradient(180deg, #282C34 0.11%, rgba(40, 44, 52, 0.52) 70%), url("${
           images.base_url + images.backdrop_sizes[3] + details.backdrop_path
         }")`,
       }}
@@ -107,22 +135,28 @@ function Hero({ details, watchProviders }) {
         <h4 className={classes.rating}>
           {details.vote_average} <StarIcon fill="#FFE600" />
         </h4>
-        <p>
+        <p className={classes.imdb}>
           check on <span>IMDb</span>
         </p>
-        <p>{details.overview}</p>
+        <p className={classes.overview}>{details.overview}</p>
         {details.tagline && (
-          <div>
+          <div className={classes.tagline}>
             <h3>Tagline</h3>
             <p>{details.tagline}</p>
           </div>
         )}
+        <div style={{ display: "flex", marginTop: 30 }}>
+          {watchProviders.results["US"] && (
+            <button className={classes.watchNow}>
+              Watch Now <img src="" alt="" />
+            </button>
+          )}
 
-        <button className={classes.watchNow}>
-          Watch Now <img src="" alt="" />
-        </button>
-
-        <button className={classes.tryAnother}>Try another shot</button>
+          <button className={classes.tryAnother}>
+            <RestartIcon />
+            <span>Try another shot</span>
+          </button>
+        </div>
       </div>
     </section>
   );

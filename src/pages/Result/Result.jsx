@@ -24,7 +24,11 @@ function Result() {
 
       // get watch providers
       const { data: watchProviders } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_API_KEY}&watch_region=`
+        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${
+          process.env.REACT_APP_TMDB_API_KEY
+        }&watch_region=${
+          JSON.parse(localStorage.getItem("location")).countryCode
+        }`
       );
 
       // get credits
