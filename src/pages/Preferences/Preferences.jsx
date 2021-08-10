@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 import Layout from "../../Layout/Layout";
 import Stepper from "./components/Stepper";
 import TypeOfContent from "./components/TypeOfContent";
 import Genres from "./components/Genres";
 import Rating from "./components/Rating";
+import { getSuggestion } from "../../utils";
+import { ReactComponent as LoadingAnimation } from "../../images/loadingAnimation.svg";
 
 const useStyles = createUseStyles((theme) => ({
   submitButton: {
@@ -34,8 +37,11 @@ function Preferences() {
   const [genreList, setGenreList] = useState([]);
   const [ott, setOTT] = useState([]);
   const [ottList, setOTTList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
+  const history = useHistory();
+  const theme = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,14 +55,18 @@ function Preferences() {
     fetchData();
   }, [type]);
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    setLoading(true);
     const data = {
       type,
       ratings,
       selectedGenres,
     };
 
-    console.log(data);
+    const { typeOfContent, item } = await getSuggestion(true, data);
+
+    setLoading(false);
+    history.push(`/watch-today/${typeOfContent}/${item.id}`);
   }
 
   return (
@@ -89,7 +99,17 @@ function Preferences() {
           <Rating ratings={ratings} setRatings={setRatings} />
         )}
         <div className={classes.submitButton}>
-          <button onClick={handleSubmit}>Let's go</button>
+          <button onClick={handleSubmit}>
+            {loading ? (
+              <LoadingAnimation
+                width={40}
+                height={30}
+                fill={theme.color.secondary}
+              />
+            ) : (
+              "Let's Go"
+            )}
+          </button>
         </div>
       </div>
     </Layout>

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { createUseStyles, useTheme } from "react-jss";
-import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import endpoints from "../../../config/endpoints";
 import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import Loading from "../../../components/Loading";
