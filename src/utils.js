@@ -8,7 +8,7 @@ export async function getSuggestion(hasPreferences, preferences) {
   let typeOfContent = hasPreferences ? preferences.type : flag ? "movie" : "tv";
 
   // get watch region
-  const watch_region = JSON.parse(localStorage.getItem("country")).countryCode;
+  const watch_region = JSON.parse(localStorage.getItem("location")).countryCode;
 
   let genreList = [];
 
@@ -75,4 +75,8 @@ export async function getSuggestion(hasPreferences, preferences) {
   }
 
   return { typeOfContent, item };
+}
+
+export function getYear(str) {
+  if (str) return str.split("-")[0];
 }

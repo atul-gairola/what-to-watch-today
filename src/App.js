@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { createUseStyles } from "react-jss";
+import axios from "axios";
 
-import { usePreference } from "./contexts/PrefernceContext";
 import Home from "./pages/Home/Home";
 import Result from "./pages/Result/Result";
 import Preferences from "./pages/Preferences/Preferences";
@@ -14,8 +15,23 @@ const useStyles = createUseStyles((theme) => ({
 }));
 
 function App() {
-  const { preferences } = usePreference();
   const classes = useStyles();
+
+  useEffect(() => {
+    async function getIpData() {
+      const { data } = await axios.get("http://ip-api.com/json");
+      localStorage.setItem(
+        "location",
+        JSON.stringify({
+          country: data.country,
+          countryCode: data.countryCode,
+        })
+      );
+    }
+
+    getIpData();
+    return () => {};
+  }, []);
 
   return (
     <div className={classes.body}>

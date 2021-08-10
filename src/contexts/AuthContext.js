@@ -60,7 +60,6 @@ export function AuthProvider({ children }) {
               data = doc.data();
               data.id = doc.id;
             });
-            console.log(data);
             setCurrentUser(data);
           })
           .catch((e) => console.log(e));

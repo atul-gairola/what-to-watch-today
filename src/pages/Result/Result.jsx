@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import Layout from "../../Layout/Layout";
+import ResultLayout from "../../Layout/ResultLayout";
 import Loading from "../../components/Loading";
+import Hero from "./components/Hero";
 
 function Result() {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState();
+  const [watchProviders, setWatchProviders] = useState([]);
 
   const { id, type } = useParams();
 
@@ -22,7 +24,7 @@ function Result() {
 
       // get watch providers
       const { data: watchProviders } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_API_KEY}&watch_region=`
       );
 
       // get credits
@@ -43,6 +45,7 @@ function Result() {
       );
 
       setDetails(details);
+      setWatchProviders(watchProviders);
       console.log({ details, watchProviders, images, videos, credits });
       setLoading(false);
     };
@@ -50,7 +53,17 @@ function Result() {
     fetchDetails();
   }, []);
 
-  return <Layout>{loading ? <Loading /> : <div></div>}</Layout>;
+  return (
+    <ResultLayout>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Hero details={details} watchProviders={watchProviders} />
+        </div>
+      )}
+    </ResultLayout>
+  );
 }
 
 export default Result;

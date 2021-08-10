@@ -16,8 +16,6 @@ export function ConfigProvider({ children }) {
         const { data: config } = await axios.get(`
         https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
 
-        console.log(config);
-
         setTmdbConfig(config);
       } catch (e) {
         console.log(e);
