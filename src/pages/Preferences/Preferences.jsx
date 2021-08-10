@@ -49,6 +49,16 @@ function Preferences() {
     fetchData();
   }, [type]);
 
+  function handleSubmit() {
+    const data = {
+      type,
+      ratings,
+      selectedGenres,
+    };
+
+    console.log(data);
+  }
+
   return (
     <Layout>
       <div
@@ -79,7 +89,7 @@ function Preferences() {
           <Rating ratings={ratings} setRatings={setRatings} />
         )}
         <div className={classes.submitButton}>
-          <button>Let's go</button>
+          <button onClick={handleSubmit}>Let's go</button>
         </div>
       </div>
     </Layout>

@@ -8,6 +8,7 @@ import endpoints from "../../../config/endpoints";
 import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import Loading from "../../../components/Loading";
+import { getSuggestion } from "../../../utils";
 
 const useStyles = createUseStyles((theme) => ({
   container: {
@@ -208,65 +209,8 @@ function Hero() {
 
   const getRandomMovieWithoutPreference = async () => {
     setLoading(true);
-    // select if it will be a  movie or a show
-    const flag = Math.floor(Math.random() * 2);
-    let typeOfContent = flag ? "movie" : "tv";
 
-    // get watch region
-    const watch_region = JSON.parse(
-      localStorage.getItem("country")
-    ).countryCode;
-
-    // randomize genre
-    let genreURL =
-      typeOfContent === "movie"
-        ? endpoints.getMovieGenres
-        : endpoints.getShowGenres;
-
-    const {
-      data: { genres },
-    } = await axios.get(genreURL);
-
-    let genreCount = Math.floor(Math.random() * 8) + 2;
-
-    let randomGenre = [];
-
-    while (genreCount > 0) {
-      const genreNum = Math.floor(Math.random() * genres.length);
-
-      randomGenre.push(genres[genreNum].id);
-      genres.splice(genres[genreNum], 1);
-      genreCount--;
-    }
-
-    const randomAvgVotesCount = Math.floor(Math.random() * 8) + 1;
-
-    const url = `https://api.themoviedb.org/3/discover/${typeOfContent}?api_key=${
-      process.env.REACT_APP_TMDB_API_KEY
-    }&language=en-US&include_adult=true&include_video=true&vote_average.gte=${randomAvgVotesCount}&with_genres=${randomGenre.join(
-      "|"
-    )}&watch_region=${watch_region}`;
-
-    const { data } = await axios.get(url);
-
-    if (data.total_pages === 0) {
-      return await getRandomMovieWithoutPreference();
-    }
-
-    const randomResultPageNum =
-      Math.floor(Math.random() * data.total_pages) + 1;
-    const randomArrIndex = Math.floor(Math.random() * 20);
-
-    let item;
-
-    if (randomResultPageNum === 1) {
-      item = data.results[randomArrIndex];
-    } else {
-      const { data: finalData } = await axios.get(
-        `${url}&page=${randomResultPageNum}`
-      );
-      item = finalData.results[randomArrIndex];
-    }
+    const { typeOfContent, item } = await getSuggestion();
 
     setLoading(false);
     setIconColor1("#fff");
