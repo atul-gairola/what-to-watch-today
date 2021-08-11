@@ -146,9 +146,9 @@ function Nav() {
             </div>
           ) : currentUser ? (
             <div className={classes.userLinksContainer}>
-              <UserItem Icon={PreferenceIcon} />
+              {/* <UserItem Icon={PreferenceIcon} />
               <UserItem Icon={WatchedIcon} />
-              <UserItem Icon={HeartIcon} />
+              <UserItem Icon={HeartIcon} /> */}
               <div style={{ marginLeft: 20 }}>
                 <UserMenu
                   name={currentUser.name}

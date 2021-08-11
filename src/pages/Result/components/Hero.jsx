@@ -17,14 +17,14 @@ const useStyles = createUseStyles((theme) => ({
     paddingRight: 50,
     display: "grid",
     gridTemplateColumns: "auto 1fr",
-    gridGap: 22,
+    gridGap: 30,
     paddingBottom: 22,
   },
   poster: {
-    width: 278,
+    width: 248,
     height: 376,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    backgroundSize: "contain",
     backgroundPosition: "center",
     borderRadius: 10,
   },
@@ -87,7 +87,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, watchProviders }) {
+function Hero({ details, watchProviders, type }) {
   const classes = useStyles();
   const { images } = useConfig();
   console.log(details);
@@ -114,7 +114,10 @@ function Hero({ details, watchProviders }) {
         <p className={classes.undername}>
           {" "}
           <span>
-            {getYear(details.release_date) || getYear(details.first_air_date)}
+            {type === "movie"
+              ? getYear(details.release_date)
+              : getYear(details.first_air_date) + " - " +
+                getYear(details.last_air_date)}
           </span>
           <span style={{ verticalAlign: "super", fontSize: 17 }}>.</span>
           <span>
@@ -129,6 +132,12 @@ function Hero({ details, watchProviders }) {
             <>
               <span style={{ verticalAlign: "super", fontSize: 17 }}>.</span>
               <span>{details.runtime}m</span>
+            </>
+          )}
+          {details.number_of_seasons && (
+            <>
+              <span style={{ verticalAlign: "super", fontSize: 17 }}>.</span>
+              <span>{details.number_of_seasons} seasons</span>
             </>
           )}
         </p>

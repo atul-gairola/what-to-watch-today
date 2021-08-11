@@ -5,11 +5,15 @@ import axios from "axios";
 import ResultLayout from "../../Layout/ResultLayout";
 import Loading from "../../components/Loading";
 import Hero from "./components/Hero";
+import ClipsSection from "./components/ClipsSection";
+import CastSection from "./components/CastSection";
 
 function Result() {
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState();
   const [watchProviders, setWatchProviders] = useState([]);
+  const [credits, setCredits] = useState();
+  const [videos, setVideos] = useState([]);
 
   const { id, type } = useParams();
 
@@ -50,6 +54,8 @@ function Result() {
 
       setDetails(details);
       setWatchProviders(watchProviders);
+      setVideos(videos.results);
+      setCredits(credits);
       console.log({ details, watchProviders, images, videos, credits });
       setLoading(false);
     };
@@ -63,7 +69,14 @@ function Result() {
         <Loading />
       ) : (
         <div>
-          <Hero details={details} watchProviders={watchProviders} />
+          <Hero details={details} watchProviders={watchProviders} type={type} />
+          <div>
+            <div>
+              {videos.length > 0 && <ClipsSection videos={videos} />}
+              {credits && <CastSection cast={credits.cast} />}
+            </div>
+            <div></div>
+          </div>
         </div>
       )}
     </ResultLayout>
