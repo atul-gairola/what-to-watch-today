@@ -7,33 +7,62 @@ const useStyles = createUseStyles((theme) => ({
   section: {
     margin: "0px 50px",
     paddingTop: "50px",
-    maxWidth: 500,
-    overflowY: "auto",
   },
   container: {
     display: "flex",
     marginTop: 20,
+    maxWidth: "80vw",
+    height: "auto",
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      height: 8,
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: "20px",
+      background: "rgba(255,255,255,0.7)",
+    },
   },
   castContainer: {
     marginRight: 20,
     display: "grid",
-    alignItems: "center",
+    gridGap: 5,
+    "& p": {
+      fontSize: 15,
+    },
+    "& p:first-of-type": {
+      fontWeight: "bold",
+    },
+    "& p:last-of-type": {
+      fontSize: 12,
+    },
   },
   image: {
-      width: 100
-  }
+    width: 150,
+    height: 224,
+  },
 }));
 
 function Cast({ details, imagesConfig }) {
   const classes = useStyles();
   return (
     <div className={classes.castContainer}>
-      <div className={classes.image} >
-        <img style={{width: "100%"}} src={imagesConfig.base_url + imagesConfig.poster_sizes[2] + details.profile_path} alt="" />
+      <div className={classes.image}>
+        <img
+          style={{ width: "100%", height: "100%", borderRadius: 10 }}
+          src={
+            imagesConfig.base_url +
+            imagesConfig.poster_sizes[2] +
+            details.profile_path
+          }
+          alt=""
+        />
       </div>
-      <div>
-        <p>{details.character}</p>
+      <div style={{ alignSelf: "top" }}>
         <p>{details.name}</p>
+        <p>{details.character}</p>
       </div>
     </div>
   );
