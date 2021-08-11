@@ -6,7 +6,7 @@ import { useConfig } from "../../../contexts/ConfigContext";
 const useStyles = createUseStyles((theme) => ({
   section: {
     margin: "0px 50px",
-    paddingTop: "70px",
+    paddingTop: "100px",
   },
   container: {
     display: "flex",
@@ -45,7 +45,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Cast({ details, imagesConfig }) {
+function Crew({ details, imagesConfig }) {
   const classes = useStyles();
   return (
     <div className={classes.castContainer}>
@@ -62,26 +62,26 @@ function Cast({ details, imagesConfig }) {
       </div>
       <div style={{ alignSelf: "top" }}>
         <p>{details.name}</p>
-        <p>{details.character}</p>
+        <p>{details.job}</p>
       </div>
     </div>
   );
 }
 
-function CastSection({ cast }) {
+function CrewSection({ crew }) {
   const classes = useStyles();
   const { images } = useConfig();
-  console.log(cast);
+  console.log(crew);
   return (
     <section className={classes.section}>
-      <h2>Cast</h2>
+      <h2>Crew</h2>
       <div className={classes.container}>
-        {cast.slice(0, 10).map((cur) => (
-          <Cast details={cur} imagesConfig={images} />
+        {crew.slice(0, 10).map((cur) => (
+          <Crew details={cur} imagesConfig={images} />
         ))}
       </div>
     </section>
   );
 }
 
-export default CastSection;
+export default CrewSection;

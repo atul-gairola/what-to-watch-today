@@ -14,10 +14,9 @@ const useStyles = createUseStyles((theme) => ({
     left: 0,
     width: "100%",
   },
-  //   container: {
-  //     padding: "50px",
-  //     height: "100%",
-  //   },
+    container: {
+     marginBottom: 50
+    },
 
   [`@media(max-width: 400px)`]: {
     container: {

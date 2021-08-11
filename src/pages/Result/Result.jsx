@@ -7,6 +7,7 @@ import Loading from "../../components/Loading";
 import Hero from "./components/Hero";
 import ClipsSection from "./components/ClipsSection";
 import CastSection from "./components/CastSection";
+import CrewSection from "./components/CrewSection";
 
 function Result() {
   const [loading, setLoading] = useState(true);
@@ -74,6 +75,7 @@ function Result() {
             <div>
               {videos.length > 0 && <ClipsSection videos={videos} />}
               {credits && <CastSection cast={credits.cast} />}
+              {credits && <CrewSection crew={credits.crew} />}
             </div>
             <div></div>
           </div>
