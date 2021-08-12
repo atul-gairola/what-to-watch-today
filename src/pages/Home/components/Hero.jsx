@@ -214,7 +214,7 @@ function Hero() {
     setIconColor1("#fff");
     setIconColor2("#fff");
 
-    history.push(`/watch-today/${typeOfContent}/${item.id}`);
+    history.push(`/watch-today/${typeOfContent}/${item.id}?type=random`);
   };
 
   const handleMouseHover = (type, num) => {

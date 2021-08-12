@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
+import { useHistory, Redirect } from "react-router";
 import { useConfig } from "../../../contexts/ConfigContext";
 
 import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
 import moviePlaceholder from "../../../images/moviePlaceholder.png";
+import { getSuggestion } from "../../../utils";
 
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
@@ -91,9 +93,21 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, type, imdbId }) {
+function Hero({ details, type, imdbId, queryType, setLoading }) {
   const classes = useStyles();
   const { images } = useConfig();
+  const history = useHistory();
+
+  async function handleRetry() {
+    if (queryType === "preferences") {
+    } else {
+      setLoading(true);
+      const { typeOfContent, item } = await getSuggestion();
+      history.push(`/watch-today/${typeOfContent}/${item.id}?type=random`);
+      setLoading(false);
+    }
+  }
+
   return (
     <section
       style={{
@@ -106,6 +120,7 @@ function Hero({ details, type, imdbId }) {
       <div
         className={classes.poster}
         style={{
+          backgroundColor: "#C4C4C4",
           backgroundImage: `url("${
             details.poster_path
               ? images.base_url + images.poster_sizes[4] + details.poster_path
@@ -167,7 +182,7 @@ function Hero({ details, type, imdbId }) {
           </div>
         )}
         <div style={{ display: "flex", marginTop: 30 }}>
-          <button className={classes.tryAnother}>
+          <button onClick={handleRetry} className={classes.tryAnother}>
             <RestartIcon />
             <span>Try another shot</span>
           </button>

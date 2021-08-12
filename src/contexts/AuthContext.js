@@ -10,6 +10,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [authLoading, setAuthLoading] = useState();
 
   function signup(name, email, password) {
     return firebaseAuth
@@ -49,6 +50,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
+    setAuthLoading(true);
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         db.collection("users")
@@ -61,10 +63,12 @@ export function AuthProvider({ children }) {
               data.id = doc.id;
             });
             setCurrentUser(data);
+            setAuthLoading(false);
           })
           .catch((e) => console.log(e));
       } else {
         setCurrentUser(user);
+        setAuthLoading(false);
       }
     });
 
@@ -77,6 +81,7 @@ export function AuthProvider({ children }) {
     loginWithGoogle,
     logout,
     login,
+    authLoading,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
