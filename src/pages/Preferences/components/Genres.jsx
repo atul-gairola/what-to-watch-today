@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { createUseStyles, useTheme } from "react-jss";
+import React from "react";
+import { createUseStyles } from "react-jss";
 
 import GenreButton from "./GenreButton";
 
@@ -38,7 +38,6 @@ const useStyles = createUseStyles((theme) => ({
 
 function Genres({ genreList, setSelectedGenres, selectedGenres }) {
   const classes = useStyles();
-  const theme = useTheme();
 
   const handleClick = (e) => {
     const { name: id } = e.target;

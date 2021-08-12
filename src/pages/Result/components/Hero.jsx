@@ -149,6 +149,7 @@ function Hero({ details, watchProviders, type, imdbId }) {
         {imdbId && (
           <a
             target="_blank"
+            rel="noreferrer"
             href={`https://www.imdb.com/title/${imdbId}/`}
             className={classes.imdb}
           >

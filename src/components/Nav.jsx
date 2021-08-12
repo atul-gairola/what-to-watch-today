@@ -12,8 +12,8 @@ import { ReactComponent as Logo } from "../images/Logo.svg";
 // import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
 // import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
 // import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
-import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
-import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
+// import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
+// import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
 import { ReactComponent as HamburgerIcon } from "../images/hamburgerIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
@@ -92,34 +92,34 @@ function Nav() {
 
   const [openModal, setOpenModal] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
-  const [darkTheme, setDarkTheme] = useState(true);
+  // const [darkTheme, setDarkTheme] = useState(true);
 
   const isMobile = useMediaQuery({
     query: `(max-device-width: ${theme.viewports.mobile})`,
   });
 
-  function UserItem({ Icon }) {
-    return (
-      <div className={classes.userItem}>
-        <Icon fill="#fff" width={20} height={20} />
-      </div>
-    );
-  }
+  // function UserItem({ Icon }) {
+  //   return (
+  //     <div className={classes.userItem}>
+  //       <Icon fill="#fff" width={20} height={20} />
+  //     </div>
+  //   );
+  // }
 
-  function ThemeToggle() {
-    return (
-      <div
-        onClick={() => setDarkTheme((prev) => !prev)}
-        className={classes.toggleButton}
-      >
-        {darkTheme ? (
-          <MoonIcon width={25} height={25} fill={theme.color.main} />
-        ) : (
-          <SunIcon width={32} height={32} fill={theme.color.main} />
-        )}
-      </div>
-    );
-  }
+  // function ThemeToggle() {
+  //   return (
+  //     <div
+  //       onClick={() => setDarkTheme((prev) => !prev)}
+  //       className={classes.toggleButton}
+  //     >
+  //       {darkTheme ? (
+  //         <MoonIcon width={25} height={25} fill={theme.color.main} />
+  //       ) : (
+  //         <SunIcon width={32} height={32} fill={theme.color.main} />
+  //       )}
+  //     </div>
+  //   );
+  // }
 
   const handleModal = () => {
     setOpenModal(true);

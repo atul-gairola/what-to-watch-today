@@ -98,7 +98,7 @@ function SignupForm({ setOpenModal }) {
       {({ isSubmitting, errors, touched, values }) => (
         <Form className={classes.form}>
           <div>
-            <label for="name">Name</label>
+            <label >Name</label>
             <Field
               type="text"
               className={classes.input}
@@ -117,7 +117,7 @@ function SignupForm({ setOpenModal }) {
             </ErrorMessage>
           </div>
           <div>
-            <label for="email">Email</label>
+            <label>Email</label>
             <Field
               type="email"
               className={classes.input}
@@ -136,7 +136,7 @@ function SignupForm({ setOpenModal }) {
             </ErrorMessage>
           </div>
           <div>
-            <label for="password">Password</label>
+            <label>Password</label>
             <Field
               type="password"
               name="password"

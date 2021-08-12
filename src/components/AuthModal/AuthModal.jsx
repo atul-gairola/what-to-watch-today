@@ -152,13 +152,13 @@ function AuthModal({ isOpen, setOpenModal }) {
       <div>
         <div className={classes.tabContainer}>
           <button
-            className={isLogin && classes.activeTab}
+            className={isLogin ? classes.activeTab : ""}
             onClick={() => setIsLogin(true)}
           >
             Login
           </button>
           <button
-            className={!isLogin && classes.activeTab}
+            className={!isLogin ? classes.activeTab : ""}
             onClick={() => setIsLogin(false)}
           >
             Signup

@@ -1,7 +1,6 @@
 import React from "react";
-import { createUseStyles, useTheme } from "react-jss";
+import { createUseStyles } from "react-jss";
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
-import { useMediaQuery } from "react-responsive";
 
 import { SliderRail, Handle, Track, Tick } from "./DoubleSliderComponents";
 
@@ -23,10 +22,6 @@ function Rating({ ratings, setRatings }) {
   const domain = [0, 10];
 
   const classes = useStyles();
-  const theme = useTheme();
-  const isMobile = useMediaQuery({
-    query: `(max-device-width: ${theme.viewports.mobile})`,
-  });
 
   const handleUpdate = (update) => {
     setRatings(update);

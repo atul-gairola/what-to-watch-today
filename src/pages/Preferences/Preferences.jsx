@@ -35,8 +35,6 @@ function Preferences() {
   const [ratings, setRatings] = useState([1, 10]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genreList, setGenreList] = useState([]);
-  const [ott, setOTT] = useState([]);
-  const [ottList, setOTTList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const classes = useStyles();

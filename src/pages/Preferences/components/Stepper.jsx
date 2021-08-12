@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import { useMediaQuery } from "react-responsive";
 import clsx from "clsx";

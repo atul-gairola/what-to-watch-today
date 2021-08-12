@@ -93,7 +93,7 @@ function SignInForm({setOpenModal}) {
         return (
           <Form className={classes.form}>
             <div>
-              <label for="email">Email</label>
+              <label>Email</label>
               <Field
                 type="email"
                 className={classes.input}
@@ -112,7 +112,7 @@ function SignInForm({setOpenModal}) {
               </ErrorMessage>
             </div>
             <div>
-              <label for="password">Password</label>
+              <label>Password</label>
               <Field
                 type="password"
                 name="password"

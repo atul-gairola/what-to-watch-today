@@ -60,7 +60,6 @@ export function SliderRail({ getRailProps }) {
 }
 
 export function Handle({ domain, handle, disabled, getHandleProps }) {
-  const classes = useStyles();
 
   return (
     <>
@@ -100,7 +99,6 @@ export function Handle({ domain, handle, disabled, getHandleProps }) {
 }
 
 export function Track({ source, target, getTrackProps, disabled = false }) {
-  const classes = useStyles();
   return (
     <div
       style={{

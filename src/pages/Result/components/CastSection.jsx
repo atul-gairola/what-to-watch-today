@@ -7,12 +7,12 @@ import personPlaceholder from "../../../images/placeholderImage.png";
 const useStyles = createUseStyles((theme) => ({
   section: {
     margin: "0px 50px",
+    position: "relative",
     paddingTop: "70px",
   },
   container: {
     display: "flex",
     marginTop: 20,
-    maxWidth: "80vw",
     height: "auto",
     paddingBottom: 10,
     maxWidth: "60vw",
@@ -46,6 +46,30 @@ const useStyles = createUseStyles((theme) => ({
     width: 150,
     height: 224,
   },
+  overlay: {
+    position: "absolute",
+    background:
+      "linear-gradient(269.68deg, #282C34 4%, rgba(40, 44, 52, 0) 61.25%)",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    pointerEvents: "none",
+  },
+  heading: {
+    display: "grid",
+    position: "relative",
+    zIndex: 2,
+    gridTemplateColumns: "1fr 1fr",
+    "& button": {
+      justifySelf: "end",
+      background: "transparent",
+      border: "none",
+      color: theme.color.main,
+      fontWeight: 600,
+      fontSize: 16
+    },
+  },
 }));
 
 function Cast({ details, imagesConfig }) {
@@ -78,12 +102,16 @@ function CastSection({ cast }) {
   const { images } = useConfig();
   return (
     <section className={classes.section}>
-      <h2>Cast</h2>
+      <div className={classes.heading}>
+        <h2>Cast</h2>
+        <button>see all</button>
+      </div>
       <div className={classes.container}>
         {cast.slice(0, 10).map((cur, i) => (
           <Cast key={i} details={cur} imagesConfig={images} />
         ))}
       </div>
+      <div className={classes.overlay}></div>
     </section>
   );
 }
