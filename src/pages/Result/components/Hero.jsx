@@ -42,6 +42,9 @@ const useStyles = createUseStyles((theme) => ({
   },
   imdb: {
     fontWeight: 700,
+    color: "inherit",
+    textDecoration: "none",
+    display: "inline-block",
     "& > span": {
       color: "#FAB446",
     },
@@ -87,7 +90,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, watchProviders, type }) {
+function Hero({ details, watchProviders, type, imdbId }) {
   const classes = useStyles();
   const { images } = useConfig();
   return (
@@ -114,7 +117,8 @@ function Hero({ details, watchProviders, type }) {
           <span>
             {type === "movie"
               ? getYear(details.release_date)
-              : getYear(details.first_air_date) + " - " +
+              : getYear(details.first_air_date) +
+                " - " +
                 getYear(details.last_air_date)}
           </span>
           <span style={{ verticalAlign: "super", fontSize: 17 }}>.</span>
@@ -142,9 +146,15 @@ function Hero({ details, watchProviders, type }) {
         <h4 className={classes.rating}>
           {details.vote_average} <StarIcon fill="#FFE600" />
         </h4>
-        <p className={classes.imdb}>
-          check on <span>IMDb</span>
-        </p>
+        {imdbId && (
+          <a
+            target="_blank"
+            href={`https://www.imdb.com/title/${imdbId}/`}
+            className={classes.imdb}
+          >
+            check on <span>IMDb</span>
+          </a>
+        )}
         <p className={classes.overview}>{details.overview}</p>
         {details.tagline && (
           <div className={classes.tagline}>

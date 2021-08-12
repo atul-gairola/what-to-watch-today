@@ -10,6 +10,7 @@ import ClipsSection from "./components/ClipsSection";
 import CastSection from "./components/CastSection";
 import CrewSection from "./components/CrewSection";
 import WatchPlatforms from "./components/WatchPlatforms";
+import StatsSection from "./components/StatsSection";
 
 const useStyles = createUseStyles((theme) => ({
   container: {
@@ -24,6 +25,7 @@ function Result() {
   const [watchProviders, setWatchProviders] = useState([]);
   const [credits, setCredits] = useState();
   const [videos, setVideos] = useState([]);
+  const [imdbId, setImdbId] = useState("");
 
   const { id, type } = useParams();
   const classes = useStyles();
@@ -57,17 +59,24 @@ function Result() {
       );
 
       // get videos
-
       const { data: videos } = await axios.get(
         `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US
         `
+      );
+
+      // get imdb id
+      const {
+        data: { imdb_id },
+      } = await axios.get(
+        `https://api.themoviedb.org/3/${type}/${id}/external_ids?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
       );
 
       setDetails(details);
       setWatchProviders(watchProviders.results);
       setVideos(videos.results);
       setCredits(credits);
-      console.log({ details, watchProviders, images, videos, credits });
+      setImdbId(imdb_id);
+      // console.log({ details, watchProviders, images, videos, credits });
       setLoading(false);
     };
 
@@ -80,7 +89,12 @@ function Result() {
         <Loading />
       ) : (
         <div>
-          <Hero details={details} watchProviders={watchProviders} type={type} />
+          <Hero
+            details={details}
+            watchProviders={watchProviders}
+            type={type}
+            imdbId={imdbId}
+          />
           <div className={classes.container}>
             <div>
               {videos.length > 0 && <ClipsSection videos={videos} />}
@@ -88,7 +102,8 @@ function Result() {
               {credits && <CrewSection crew={credits.crew} />}
             </div>
             <div>
-                <WatchPlatforms watchProviders={watchProviders} />
+              <WatchPlatforms watchProviders={watchProviders} />
+              <StatsSection details={details} type={type} />
             </div>
           </div>
         </div>

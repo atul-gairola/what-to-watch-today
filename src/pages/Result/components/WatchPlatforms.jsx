@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme) => ({
     marginTop: 10,
   },
   wrapper: {
-    marginTop: 15,
+    marginTop: 10,
   },
   iconContainer: {
     marginTop: 10,
