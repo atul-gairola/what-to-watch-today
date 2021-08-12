@@ -72,13 +72,12 @@ function Crew({ details, imagesConfig }) {
 function CrewSection({ crew }) {
   const classes = useStyles();
   const { images } = useConfig();
-  console.log(crew);
   return (
     <section className={classes.section}>
       <h2>Crew</h2>
       <div className={classes.container}>
-        {crew.slice(0, 10).map((cur) => (
-          <Crew details={cur} imagesConfig={images} />
+        {crew.slice(0, 10).map((cur, i) => (
+          <Crew key={i} details={cur} imagesConfig={images} />
         ))}
       </div>
     </section>

@@ -179,7 +179,7 @@ const useStyles = createUseStyles((theme) => ({
     },
     button: {
       gridGap: "30px",
-      width: "300px",
+      // width: "300px",
       padding: "15px 20px",
       width: 250,
       "& > div > h3": {

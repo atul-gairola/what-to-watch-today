@@ -9,9 +9,9 @@ import UserMenu from "./UserMenu";
 import SideMenu from "./SideMenu";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
-import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
-import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
-import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
+// import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
+// import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
+// import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
 import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
 import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
 import { ReactComponent as HamburgerIcon } from "../images/hamburgerIcon.svg";

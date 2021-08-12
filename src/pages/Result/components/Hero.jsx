@@ -90,8 +90,6 @@ const useStyles = createUseStyles((theme) => ({
 function Hero({ details, watchProviders, type }) {
   const classes = useStyles();
   const { images } = useConfig();
-  console.log(details);
-  console.log(watchProviders);
   return (
     <section
       style={{

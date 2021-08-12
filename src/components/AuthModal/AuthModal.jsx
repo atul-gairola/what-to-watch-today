@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createUseStyles, useTheme } from "react-jss";
 import ReactModal from "react-modal";
 import { useMediaQuery } from "react-responsive";

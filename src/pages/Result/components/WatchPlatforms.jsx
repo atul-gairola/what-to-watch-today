@@ -28,7 +28,6 @@ function WatchPlatforms({ watchProviders }) {
   const [currentCountry, setCurrentCountry] = useState("");
   const classes = useStyles();
   const { images } = useConfig();
-  console.log(watchProviders);
 
   useEffect(() => {
     setCurrentCountry(JSON.parse(localStorage.getItem("location")).countryCode);
@@ -45,8 +44,9 @@ function WatchPlatforms({ watchProviders }) {
                 <div className={classes.wrapper}>
                   <h4>Stream</h4>
                   <div className={classes.iconContainer}>
-                    {watchProviders[currentCountry].flatrate.map((cur) => (
+                    {watchProviders[currentCountry].flatrate.map((cur, i) => (
                       <a
+                        key={i}
                         className={classes.icon}
                         href={watchProviders[currentCountry].link}
                       >
@@ -69,8 +69,9 @@ function WatchPlatforms({ watchProviders }) {
                 <div className={classes.wrapper}>
                   <h4>Rent</h4>
                   <div className={classes.iconContainer}>
-                    {watchProviders[currentCountry].rent.map((cur) => (
+                    {watchProviders[currentCountry].rent.map((cur, i) => (
                       <a
+                        key={i}
                         className={classes.icon}
                         href={watchProviders[currentCountry].link}
                       >
@@ -94,8 +95,9 @@ function WatchPlatforms({ watchProviders }) {
                 <div className={classes.wrapper}>
                   <h4>Buy</h4>
                   <div className={classes.iconContainer}>
-                    {watchProviders[currentCountry].buy.map((cur) => (
+                    {watchProviders[currentCountry].buy.map((cur, i) => (
                       <a
+                        key={i}
                         className={classes.icon}
                         href={watchProviders[currentCountry].link}
                       >

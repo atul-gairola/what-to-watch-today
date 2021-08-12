@@ -34,13 +34,13 @@ const useStyles = createUseStyles((theme) => ({
 
 function ClipsSection({ videos }) {
   const classes = useStyles();
-  console.log(videos);
   return (
     <section className={classes.section}>
       <h2>Clips</h2>
       <div className={classes.container}>
-        {videos.map((cur) => (
+        {videos.map((cur, i) => (
           <iframe
+          key={i}
             className={classes.video}
             width={400}
             height={222}

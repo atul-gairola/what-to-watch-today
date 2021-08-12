@@ -73,13 +73,12 @@ function Cast({ details, imagesConfig }) {
 function CastSection({ cast }) {
   const classes = useStyles();
   const { images } = useConfig();
-  console.log(cast);
   return (
     <section className={classes.section}>
       <h2>Cast</h2>
       <div className={classes.container}>
-        {cast.slice(0, 10).map((cur) => (
-          <Cast details={cur} imagesConfig={images} />
+        {cast.slice(0, 10).map((cur, i) => (
+          <Cast key={i} details={cur} imagesConfig={images} />
         ))}
       </div>
     </section>
