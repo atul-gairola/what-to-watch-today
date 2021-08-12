@@ -99,7 +99,7 @@ function Result() {
             watchProviders={watchProviders}
             type={type}
             imdbId={imdbId}
-            queryType={query.get("type")}
+            query={query}
             setReload={setReload}
             setLoading={setLoading}
           />

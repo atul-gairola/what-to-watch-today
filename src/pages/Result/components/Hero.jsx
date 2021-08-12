@@ -93,17 +93,34 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, type, imdbId, queryType, setReload, setLoading }) {
+function Hero({ details, type, imdbId, query, setReload, setLoading }) {
   const classes = useStyles();
   const { images } = useConfig();
   const history = useHistory();
 
   async function handleRetry() {
-    if (queryType === "preferences") {
+    if (query.get("method") === "preferences") {
+      const type = query.get("type");
+      const genres = query.get("genres");
+      const ratings = query.get("ratings");
+
+      setLoading(true);
+
+      const { typeOfContent, item } = await getSuggestion(true, {
+        type,
+        ratings,
+        selectedGenres: genres,
+      });
+
+      history.push(
+        `/watch-today/${typeOfContent}/${item.id}?method=preferences&type=${type}&genres=${genres}&ratings=${ratings}`
+      );
+
+      setReload((prev) => (prev === 0 ? 1 : 0));
     } else {
       setLoading(true);
       const { typeOfContent, item } = await getSuggestion();
-      history.push(`/watch-today/${typeOfContent}/${item.id}?type=random`);
+      history.push(`/watch-today/${typeOfContent}/${item.id}?method=random`);
       setReload((prev) => (prev === 0 ? 1 : 0));
     }
   }

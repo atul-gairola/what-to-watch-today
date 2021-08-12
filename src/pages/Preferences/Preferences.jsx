@@ -63,7 +63,13 @@ function Preferences() {
     const { typeOfContent, item } = await getSuggestion(true, data);
 
     setLoading(false);
-    history.push(`/watch-today/${typeOfContent}/${item.id}?type=preferences`);
+    history.push(
+      `/watch-today/${typeOfContent}/${
+        item.id
+      }?method=preferences&type=${type}&genres=${selectedGenres.join(
+        ","
+      )}&ratings=${ratings.join(",")}`
+    );
   }
 
   return (
