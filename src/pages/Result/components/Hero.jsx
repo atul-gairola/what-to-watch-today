@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { createUseStyles } from "react-jss";
-import { useHistory, Redirect } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 import { useConfig } from "../../../contexts/ConfigContext";
 
 import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
+import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
 import moviePlaceholder from "../../../images/moviePlaceholder.png";
 import { getSuggestion } from "../../../utils";
 
@@ -90,6 +91,7 @@ const useStyles = createUseStyles((theme) => ({
     gridTemplateColumns: "auto auto",
     gridGap: 5,
     alignItems: "center",
+    marginRight: 20,
   },
 }));
 
@@ -203,6 +205,12 @@ function Hero({ details, type, imdbId, query, setReload, setLoading }) {
             <RestartIcon />
             <span>Try another shot</span>
           </button>
+          <Link to="/set-preferences">
+            <button className={classes.tryAnother}>
+              <PreferenceIcon fill="#fff" width={15} />
+              <span>Change preferences</span>
+            </button>
+          </Link>
         </div>
       </div>
     </section>
