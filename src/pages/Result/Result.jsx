@@ -98,8 +98,12 @@ function Result() {
           <div className={classes.container}>
             <div>
               {videos.length > 0 && <ClipsSection videos={videos} />}
-              {credits && <CastSection cast={credits.cast} />}
-              {credits && <CrewSection crew={credits.crew} />}
+              {credits && credits.cast.length > 0 && (
+                <CastSection cast={credits.cast} />
+              )}
+              {credits && credits.crew.length > 0 && (
+                <CrewSection crew={credits.crew} />
+              )}
             </div>
             <div>
               <WatchPlatforms watchProviders={watchProviders} />

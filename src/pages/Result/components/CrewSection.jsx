@@ -2,6 +2,7 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 
 import { useConfig } from "../../../contexts/ConfigContext";
+import personPlaceholder from "../../../images/placeholderImage.png";
 
 const useStyles = createUseStyles((theme) => ({
   section: {
@@ -37,7 +38,7 @@ const useStyles = createUseStyles((theme) => ({
       fontWeight: "bold",
     },
     "& p:last-of-type": {
-      fontSize: 12,
+      fontSize: 15,
     },
   },
   image: {
@@ -54,11 +55,13 @@ function Crew({ details, imagesConfig }) {
         <img
           style={{ width: "100%", height: "100%", borderRadius: 10 }}
           src={
-            imagesConfig.base_url +
-            imagesConfig.poster_sizes[2] +
             details.profile_path
+              ? imagesConfig.base_url +
+                imagesConfig.poster_sizes[2] +
+                details.profile_path
+              : personPlaceholder
           }
-          alt=""
+          alt={details.name}
         />
       </div>
       <div style={{ alignSelf: "top" }}>
