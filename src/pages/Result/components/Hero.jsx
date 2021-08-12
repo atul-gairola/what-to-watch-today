@@ -5,6 +5,7 @@ import { useConfig } from "../../../contexts/ConfigContext";
 import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
+import moviePlaceholder from "../../../images/moviePlaceholder.png";
 
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
@@ -90,7 +91,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, watchProviders, type, imdbId }) {
+function Hero({ details, type, imdbId }) {
   const classes = useStyles();
   const { images } = useConfig();
   return (
@@ -106,7 +107,9 @@ function Hero({ details, watchProviders, type, imdbId }) {
         className={classes.poster}
         style={{
           backgroundImage: `url("${
-            images.base_url + images.poster_sizes[4] + details.poster_path
+            details.poster_path
+              ? images.base_url + images.poster_sizes[4] + details.poster_path
+              : moviePlaceholder
           }")`,
         }}
       />
@@ -164,12 +167,6 @@ function Hero({ details, watchProviders, type, imdbId }) {
           </div>
         )}
         <div style={{ display: "flex", marginTop: 30 }}>
-          {/* {watchProviders["US"] && (
-            <button className={classes.watchNow}>
-              Watch Now <img src="" alt="" />
-            </button>
-          )} */}
-
           <button className={classes.tryAnother}>
             <RestartIcon />
             <span>Try another shot</span>
