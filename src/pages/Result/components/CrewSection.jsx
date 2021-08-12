@@ -11,9 +11,10 @@ const useStyles = createUseStyles((theme) => ({
   container: {
     display: "flex",
     marginTop: 20,
-    maxWidth: "80vw",
+    maxWidth: "60vw",
     height: "auto",
     overflowY: "auto",
+    paddingBottom: 10,
     "&::-webkit-scrollbar": {
       height: 8,
     },
@@ -22,7 +23,7 @@ const useStyles = createUseStyles((theme) => ({
     },
     "&::-webkit-scrollbar-thumb": {
       borderRadius: "20px",
-      background: "rgba(255,255,255,0.7)",
+      background: "rgba(255,255,255,0.5)",
     },
   },
   castContainer: {

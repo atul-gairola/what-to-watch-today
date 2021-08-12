@@ -13,6 +13,8 @@ const useStyles = createUseStyles((theme) => ({
     marginTop: 20,
     maxWidth: "80vw",
     height: "auto",
+    paddingBottom: 10,
+    maxWidth: "60vw",
     overflowY: "auto",
     "&::-webkit-scrollbar": {
       height: 8,
@@ -22,7 +24,7 @@ const useStyles = createUseStyles((theme) => ({
     },
     "&::-webkit-scrollbar-thumb": {
       borderRadius: "20px",
-      background: "rgba(255,255,255,0.7)",
+      background: "rgba(255,255,255,0.5)",
     },
   },
   castContainer: {

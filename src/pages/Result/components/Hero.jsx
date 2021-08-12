@@ -155,11 +155,11 @@ function Hero({ details, watchProviders, type }) {
           </div>
         )}
         <div style={{ display: "flex", marginTop: 30 }}>
-          {watchProviders.results["US"] && (
+          {/* {watchProviders["US"] && (
             <button className={classes.watchNow}>
               Watch Now <img src="" alt="" />
             </button>
-          )}
+          )} */}
 
           <button className={classes.tryAnother}>
             <RestartIcon />

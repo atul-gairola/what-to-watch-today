@@ -9,11 +9,26 @@ const useStyles = createUseStyles((theme) => ({
   container: {
     display: "flex",
     marginTop: 20,
+    maxWidth: "60vw",
+    overflowY: "auto",
+    paddingBottom: 20,
+    "&::-webkit-scrollbar": {
+      height: 8,
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: "20px",
+      background: "rgba(255,255,255,0.5)",
+    },
   },
   video: {
-    marginRight: 30,
     border: "none",
     borderRadius: 10,
+    display: "inline-block",
+    marginRight: 30,
+    background: "rgba(0,0,0,0.8)",
   },
 }));
 
@@ -26,8 +41,8 @@ function ClipsSection({ videos }) {
       <div className={classes.container}>
         {videos.map((cur) => (
           <iframe
-            width={422}
             className={classes.video}
+            width={400}
             height={222}
             src={`https://www.youtube.com/embed/${cur.key}`}
           ></iframe>
