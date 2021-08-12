@@ -93,7 +93,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, type, imdbId, queryType, setLoading }) {
+function Hero({ details, type, imdbId, queryType, setReload, setLoading }) {
   const classes = useStyles();
   const { images } = useConfig();
   const history = useHistory();
@@ -104,7 +104,7 @@ function Hero({ details, type, imdbId, queryType, setLoading }) {
       setLoading(true);
       const { typeOfContent, item } = await getSuggestion();
       history.push(`/watch-today/${typeOfContent}/${item.id}?type=random`);
-      setLoading(false);
+      setReload((prev) => (prev === 0 ? 1 : 0));
     }
   }
 

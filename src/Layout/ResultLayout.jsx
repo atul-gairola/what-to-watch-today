@@ -2,6 +2,8 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 
 import Nav from "../components/Nav";
+import { useAuth } from "../contexts/AuthContext";
+import Loading from "../components/Loading";
 
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
@@ -14,9 +16,9 @@ const useStyles = createUseStyles((theme) => ({
     left: 0,
     width: "100%",
   },
-    container: {
-     marginBottom: 50
-    },
+  container: {
+    marginBottom: 50,
+  },
 
   [`@media(max-width: 400px)`]: {
     container: {
@@ -32,12 +34,22 @@ const useStyles = createUseStyles((theme) => ({
 
 function ResultLayout({ children }) {
   const classes = useStyles();
+  const { authLoading } = useAuth();
+
   return (
     <div className={classes.wrapper}>
-      <div className={classes.nav}>
-        <Nav />
-      </div>
-      <div className={classes.container}>{children}</div>
+      {authLoading ? (
+        <div style={{ height: "100vh" }}>
+          <Loading />
+        </div>
+      ) : (
+        <>
+          <div className={classes.nav}>
+            <Nav />
+          </div>
+          <div className={classes.container}>{children}</div>
+        </>
+      )}
     </div>
   );
 }

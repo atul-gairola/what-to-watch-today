@@ -30,6 +30,7 @@ function Result() {
   const [credits, setCredits] = useState();
   const [videos, setVideos] = useState([]);
   const [imdbId, setImdbId] = useState("");
+  const [reload, setReload] = useState(0);
 
   const { id, type } = useParams();
   const query = useQuery();
@@ -84,8 +85,8 @@ function Result() {
   }, []);
 
   useEffect(() => {
-
-  }, [])
+    fetchDetails();
+  }, [reload]);
 
   return (
     <ResultLayout>
@@ -99,6 +100,7 @@ function Result() {
             type={type}
             imdbId={imdbId}
             queryType={query.get("type")}
+            setReload={setReload}
             setLoading={setLoading}
           />
           <div className={classes.container}>
