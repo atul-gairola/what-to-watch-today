@@ -19,14 +19,26 @@ function App() {
 
   useEffect(() => {
     async function getIpData() {
-      const { data } = await axios.get("http://ip-api.com/json");
-      localStorage.setItem(
-        "location",
-        JSON.stringify({
-          country: data.country,
-          countryCode: data.countryCode,
-        })
-      );
+      const locationJSON = localStorage.getItem("location");
+      if (
+        !locationJSON ||
+        (JSON.parse(locationJSON) && !JSON.parse(locationJSON).countryCode)
+      ) {
+        try {
+          const { data } = await axios.get(
+            `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_GEOLOCATION_API_KEY}`
+          );
+          localStorage.setItem(
+            "location",
+            JSON.stringify({
+              country: data.country_name,
+              countryCode: data.country_code2,
+            })
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
 
     getIpData();
