@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme) => ({
 function Preferences() {
   const [currentStep, setCurrentStep] = useState(0);
   const [type, setType] = useState("movie");
-  const [ratings, setRatings] = useState([1, 10]);
+  const [ratings, setRatings] = useState([0, 10]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [loading, setLoading] = useState(false);

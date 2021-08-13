@@ -173,6 +173,15 @@ function Bibliography() {
         </a>{" "}
         by O s t r e a from the Noun Project{" "}
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=later&i=3565588"
+        >
+          Watch Later
+        </a>{" "}
+        Watch Later by masmooh from the Noun Project
+      </p>
       <div>
         Icons made by{" "}
         <a

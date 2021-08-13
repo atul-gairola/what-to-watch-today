@@ -8,7 +8,8 @@ const useStyles = createUseStyles((theme) => ({
   container: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gridGap: 10,
+    gridRowGap: 10,
+    gridColumnGap: 30,
     marginTop: 10,
   },
   stat: {

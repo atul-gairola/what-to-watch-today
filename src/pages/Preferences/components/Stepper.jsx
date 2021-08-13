@@ -170,10 +170,12 @@ function Stepper({ currentStep, setCurrentStep }) {
       <ul className={classes.stepsContainer}>
         <Step stepNum={0}>Type {!isSmallTablet && "of content"}</Step>
         <Step stepNum={1}>{!isSmallTablet && "Select"} Genres</Step>
-        <Step stepNum={2}>{!isSmallTablet && "Choose"} Ratings</Step>
-        <Step stepNum={3} isLast={true}>
-          OTT {!isSmallTablet && "Platforms"}
+        <Step stepNum={2} isLast={true}>
+          {!isSmallTablet && "Choose"} Ratings
         </Step>
+        {/* <Step stepNum={3} isLast={true}>
+          OTT {!isSmallTablet && "Platforms"}
+        </Step> */}
       </ul>
       {isSmallMobile && (
         <div className={classes.mobileNav}>

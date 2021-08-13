@@ -7,6 +7,10 @@ import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
+import { ReactComponent as HeartIcon } from "../../../images/heartIcon.svg";
+import { ReactComponent as WatchedIcon } from "../../../images/watchedIcon.svg";
+import { ReactComponent as WatchLaterIcon } from "../../../images/watchLaterIcon.svg";
+
 import moviePlaceholder from "../../../images/moviePlaceholder.png";
 import { getSuggestion } from "../../../utils";
 
@@ -23,6 +27,8 @@ const useStyles = createUseStyles((theme) => ({
     gridTemplateColumns: "auto 1fr",
     gridGap: 30,
     paddingBottom: 22,
+    position: "relative",
+    zIndex: 0,
   },
   poster: {
     width: 248,
@@ -93,12 +99,43 @@ const useStyles = createUseStyles((theme) => ({
     alignItems: "center",
     marginRight: 20,
   },
+  actionContainer: {
+    position: "absolute",
+    top: 136,
+    right: 50,
+    display: "flex",
+  },
+  userItem: {
+    width: 45,
+    height: 45,
+    borderRadius: "50%",
+    display: "grid",
+    placeItems: "center",
+    marginRight: 30,
+    border: "2px solid " + theme.color.main,
+    cursor: "pointer",
+    transition: ".7s",
+    filter: "brightness(60%)",
+    "&:hover": {
+      transform: "translateY(-3px)",
+      opacity: 1,
+      filter: "brightness(100%)",
+    },
+  },
 }));
 
 function Hero({ details, type, imdbId, query, setReload, setLoading }) {
   const classes = useStyles();
   const { images } = useConfig();
   const history = useHistory();
+
+  function UserItem({ Icon }) {
+    return (
+      <div className={classes.userItem}>
+        <Icon fill="#fff" width={20} height={20} />
+      </div>
+    );
+  }
 
   async function handleRetry() {
     if (query.get("method") === "preferences") {
@@ -212,6 +249,11 @@ function Hero({ details, type, imdbId, query, setReload, setLoading }) {
             </button>
           </Link>
         </div>
+      </div>
+      <div className={classes.actionContainer}>
+        <UserItem Icon={WatchedIcon} />
+        <UserItem Icon={HeartIcon} />
+        <UserItem Icon={WatchLaterIcon} />
       </div>
     </section>
   );

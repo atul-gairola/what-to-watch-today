@@ -9,11 +9,6 @@ import UserMenu from "./UserMenu";
 import SideMenu from "./SideMenu";
 
 import { ReactComponent as Logo } from "../images/Logo.svg";
-// import { ReactComponent as HeartIcon } from "../images/heartIcon.svg";
-// import { ReactComponent as PreferenceIcon } from "../images/preference-icon.svg";
-// import { ReactComponent as WatchedIcon } from "../images/watchedIcon.svg";
-// import { ReactComponent as SunIcon } from "../images/sunIcon.svg";
-// import { ReactComponent as MoonIcon } from "../images/moonIcon.svg";
 import { ReactComponent as HamburgerIcon } from "../images/hamburgerIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
@@ -57,7 +52,13 @@ const useStyles = createUseStyles((theme) => ({
     },
   },
   userLinksContainer: {
-    display: "flex",
+    display: "grid",
+  },
+  navLink: {
+    color: "inherit",
+    fontWeight: 600,
+    fontSize: 15,
+    textDecoration: "none",
   },
   toggleButton: {
     background: "transparent",
@@ -72,6 +73,12 @@ const useStyles = createUseStyles((theme) => ({
   hamburgerButton: {
     cursor: "pointer",
     transform: "translateY(-2px)",
+  },
+  linkContainer: {
+    flexGrow: 1,
+    display: "flex",
+    gridGap: 30,
+    justifyItems: "center",
   },
   [`@media(max-width: 400px)`]: {
     navContainer: {
@@ -97,14 +104,6 @@ function Nav() {
   const isMobile = useMediaQuery({
     query: `(max-device-width: ${theme.viewports.mobile})`,
   });
-
-  // function UserItem({ Icon }) {
-  //   return (
-  //     <div className={classes.userItem}>
-  //       <Icon fill="#fff" width={20} height={20} />
-  //     </div>
-  //   );
-  // }
 
   // function ThemeToggle() {
   //   return (
@@ -133,6 +132,11 @@ function Nav() {
             <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
           </Link>
         </div>
+        <div className={classes.linkContainer}>
+          <Link to="/" className={classes.navLink}>Liked Content</Link>
+          <Link to="/" className={classes.navLink}>Watched Content</Link>
+          <Link to="/" className={classes.navLink}>Watch List</Link>
+        </div>
         <div className={classes.navEndContainer}>
           {/* <div>
             <ThemeToggle />
@@ -146,9 +150,6 @@ function Nav() {
             </div>
           ) : currentUser ? (
             <div className={classes.userLinksContainer}>
-              {/* <UserItem Icon={PreferenceIcon} />
-              <UserItem Icon={WatchedIcon} />
-              <UserItem Icon={HeartIcon} /> */}
               <div style={{ marginLeft: 20 }}>
                 <UserMenu
                   name={currentUser.name}
