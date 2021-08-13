@@ -15,7 +15,7 @@ ReactDOM.render(
     <ThemeProvider theme={dark}>
       <AuthProvider>
         <ConfigProvider>
-          <Router>
+          <Router basename="/what-to-watch-today">
             <App />
           </Router>
         </ConfigProvider>
