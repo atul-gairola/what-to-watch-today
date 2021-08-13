@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css",
-    "main.js": "/what-to-watch-today/static/js/main.023dadfb.chunk.js",
-    "main.js.map": "/what-to-watch-today/static/js/main.023dadfb.chunk.js.map",
+    "main.js": "/what-to-watch-today/static/js/main.12b31a10.chunk.js",
+    "main.js.map": "/what-to-watch-today/static/js/main.12b31a10.chunk.js.map",
     "runtime-main.js": "/what-to-watch-today/static/js/runtime-main.f6029183.js",
     "runtime-main.js.map": "/what-to-watch-today/static/js/runtime-main.f6029183.js.map",
-    "static/js/2.f7276e29.chunk.js": "/what-to-watch-today/static/js/2.f7276e29.chunk.js",
-    "static/js/2.f7276e29.chunk.js.map": "/what-to-watch-today/static/js/2.f7276e29.chunk.js.map",
+    "static/js/2.f9beb9ad.chunk.js": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js",
+    "static/js/2.f9beb9ad.chunk.js.map": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js.map",
     "index.html": "/what-to-watch-today/index.html",
     "static/css/main.41c8f4c2.chunk.css.map": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css.map",
-    "static/js/2.f7276e29.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.f7276e29.chunk.js.LICENSE.txt",
+    "static/js/2.f9beb9ad.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js.LICENSE.txt",
     "static/media/Logo.cade1503.svg": "/what-to-watch-today/static/media/Logo.cade1503.svg",
     "static/media/backIcon.10c7b1b1.svg": "/what-to-watch-today/static/media/backIcon.10c7b1b1.svg",
     "static/media/closeIcon.586835ad.svg": "/what-to-watch-today/static/media/closeIcon.586835ad.svg",
@@ -31,8 +31,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f6029183.js",
-    "static/js/2.f7276e29.chunk.js",
+    "static/js/2.f9beb9ad.chunk.js",
     "static/css/main.41c8f4c2.chunk.css",
-    "static/js/main.023dadfb.chunk.js"
+    "static/js/main.12b31a10.chunk.js"
   ]
 }
