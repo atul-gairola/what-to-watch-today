@@ -8,8 +8,8 @@ import { ReactComponent as DiceIcon } from "../../../images/diceIcon.svg";
 
 const useStyles = createUseStyles((theme) => ({
   section: {
-    background: theme.color.main,
-    color: theme.color.secondary,
+    background: theme.color.secondary,
+    color: theme.color.main,
     padding: "100px 50px",
     "& > h2": {
       textAlign: "center",
@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme) => ({
     },
   },
   featureIcon: {
-    background: theme.color.secondary,
+    background: theme.color.main,
     width: 200,
     height: 200,
     borderRadius: "50%",
@@ -47,7 +47,7 @@ const useStyles = createUseStyles((theme) => ({
       gridGap: 10,
     },
     featureIcon: {
-      background: theme.color.secondary,
+      background: theme.color.main,
       width: 150,
       height: 150,
     },
@@ -61,7 +61,7 @@ const useStyles = createUseStyles((theme) => ({
       gridGap: 10,
     },
     featureIcon: {
-      background: theme.color.secondary,
+      background: theme.color.main,
       width: 150,
       height: 150,
     },
@@ -75,7 +75,7 @@ const useStyles = createUseStyles((theme) => ({
       },
     },
     featureIcon: {
-      background: theme.color.secondary,
+      background: theme.color.main,
       width: 100,
       height: 100,
     },
@@ -106,7 +106,7 @@ function FeaturesSection() {
             <ChooseIcon
               width={isMobile ? "50px" : "70px"}
               height={isMobile ? "50px" : "70px"}
-              fill={theme.color.main}
+              fill={theme.color.secondary}
             />
           </div>
           <p>Don't get stuck on choosing what to watch, let it help.</p>
@@ -116,7 +116,7 @@ function FeaturesSection() {
             <GemIcon
               width={isMobile ? "50px" : "70px"}
               height={isMobile ? "50px" : "70px"}
-              fill={theme.color.main}
+              fill={theme.color.secondary}
             />
           </div>
           <p>Find some hidden gems to watch and brag about later.</p>
@@ -126,12 +126,10 @@ function FeaturesSection() {
             <DiceIcon
               width={isMobile ? "50px" : "70px"}
               height={isMobile ? "50px" : "70px"}
-              fill={theme.color.main}
+              fill={theme.color.secondary}
             />
           </div>
-          <p>
-            Roll the dice and be less picky about the results to have more fun.
-          </p>
+          <p>Play it as a game and watch whatever comes up good or bad.</p>
         </div>
       </div>
     </section>

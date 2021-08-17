@@ -4,6 +4,7 @@ import { createUseStyles } from "react-jss";
 import Nav from "../components/Nav";
 import { useAuth } from "../contexts/AuthContext";
 import Loading from "../components/Loading";
+import Footer from "../components/Footer";
 
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
@@ -42,6 +43,7 @@ function Layout({ children }) {
         <>
           <Nav />
           <div className={classes.container}>{children}</div>
+          <Footer />
         </>
       )}
     </div>
