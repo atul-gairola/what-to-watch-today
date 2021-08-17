@@ -52,7 +52,12 @@ const useStyles = createUseStyles((theme) => ({
     },
   },
   userLinksContainer: {
-    display: "grid",
+    display: "flex",
+    alignItems: "center",
+    "& > p": {
+      fontWeight: 500,
+      textTransform: "capitalize",
+    },
   },
   navLink: {
     color: "inherit",
@@ -150,6 +155,7 @@ function Nav() {
             </div>
           ) : currentUser ? (
             <div className={classes.userLinksContainer}>
+              <p>Hey, {currentUser.name}</p>
               <div style={{ marginLeft: 20 }}>
                 <UserMenu
                   name={currentUser.name}

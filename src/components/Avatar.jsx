@@ -3,8 +3,8 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles((theme) => ({
   avatar: {
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     borderRadius: "50%",
     backgroundPosition: "center",
     backgroundSize: "contain",

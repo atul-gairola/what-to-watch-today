@@ -143,12 +143,15 @@ function Hero({ details, type, imdbId, query, setLoading }) {
       const genres = query.get("genres");
       const ratings = query.get("ratings");
 
+      console.log(genres.split(",").map((cur) => parseInt(cur)));
+      console.log(ratings.split(",").map((cur) => parseInt(cur)));
+
       setLoading(true);
 
       const { typeOfContent, item } = await getSuggestion(true, {
         type,
-        ratings,
-        selectedGenres: genres,
+        ratings: ratings.split(",").map((cur) => parseInt(cur)),
+        selectedGenres: genres.split(",").map((cur) => parseInt(cur)),
       });
 
       history.push(
@@ -242,7 +245,10 @@ function Hero({ details, type, imdbId, query, setLoading }) {
           <Link to="/set-preferences">
             <button className={classes.tryAnother}>
               <PreferenceIcon fill="#fff" width={15} />
-              <span>Change preferences</span>
+              <span>
+                {query.get("method") === "preferences" ? "Change" : "Set"}{" "}
+                preferences
+              </span>
             </button>
           </Link>
         </div>

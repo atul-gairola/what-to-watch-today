@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 
 import { ReactComponent as RandomizeIcon } from "../../../images/randomize-icon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
+import { ReactComponent as HeroIllustration } from "../../../images/heroIllustration (4).svg";
 import Loading from "../../../components/Loading";
 import { getSuggestion } from "../../../utils";
 
@@ -25,6 +26,9 @@ const useStyles = createUseStyles((theme) => ({
     "& > p": {
       fontSize: "1.5rem",
     },
+    // "& > svg": {
+    //   width: "100%",
+    // },
   },
   buttonContainer: {
     transform: "translateY(-20px)",
@@ -67,6 +71,9 @@ const useStyles = createUseStyles((theme) => ({
       "& > p": {
         fontSize: "1.3rem",
       },
+      // "& > svg": {
+      //   width: "80%",
+      // },
     },
 
     button: {
@@ -141,8 +148,7 @@ const useStyles = createUseStyles((theme) => ({
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto auto",
       gridGap: 70,
-      height: "100%",
-      alignContent: "center",
+      alignContent: "start",
     },
     heroContent: {
       "& > h1": {
@@ -204,6 +210,12 @@ function Hero() {
   const isSmallMobile = useMediaQuery({
     query: `(max-device-width: 400px)`,
   });
+  const isTablet = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.tablet})`,
+  });
+  const isSmallTablet = useMediaQuery({
+    query: `(max-device-width: ${theme.viewports.smallTablet})`,
+  });
 
   const getRandomMovieWithoutPreference = async () => {
     setLoading(true);
@@ -227,6 +239,32 @@ function Hero() {
     }
   };
 
+  function setIllustrationWidth() {
+    if (isSmallMobile) {
+      return "100%";
+    }
+    if (isMobile) {
+      return "100%";
+    }
+    if (isSmallTablet) {
+      return "60%";
+    }
+    return "100%";
+  }
+
+  function setIllustrationHeight() {
+    if (isSmallMobile) {
+      return 200;
+    }
+    if (isMobile) {
+      return 300;
+    }
+    if (isSmallTablet) {
+      return 300;
+    }
+    return 504;
+  }
+
   return (
     <>
       {loading ? (
@@ -234,12 +272,16 @@ function Hero() {
       ) : (
         <section className={classes.container}>
           <div className={classes.heroContent}>
-            <h1>Frustrated in deciding what to watch today?</h1>
+            {/* <h1>Frustrated in deciding what to watch today?</h1>
             <p>
               This will help you in that. Get a random movie or show to watch
               and explore genres you've never seen before. Find hidden gems and
               widen your spectrum.
-            </p>
+            </p> */}
+            <HeroIllustration
+              width={setIllustrationWidth()}
+              height={setIllustrationHeight()}
+            />
           </div>
           <div className={classes.buttonContainer}>
             <div
@@ -257,9 +299,9 @@ function Hero() {
                 <h3>Surprise Me</h3>
                 {!isMobile && (
                   <p>
-                    Feel like having some excitement? Want to see what life
-                    brings you? Roll the dice and see what you’re gonna watch
-                    today.
+                    Feeling lucky today? Or maybe just wanna go with the flow?
+                    Click me to roll the dice and get a completely random show
+                    or movie to watch today.
                   </p>
                 )}
               </div>
@@ -282,9 +324,9 @@ function Hero() {
                   <h3>I'll tailor it</h3>
                   {!isMobile && (
                     <p>
-                      If you have an idea of what type of content you wanna
-                      watch, then tell us your preferences and we'll give you
-                      something.
+                      Have a vague idea of what you want but can't exactly
+                      decide what to watch? Set up your preferences and get
+                      something as per your liking to watch today.
                     </p>
                   )}
                 </div>
