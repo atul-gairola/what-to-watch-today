@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 
 import Layout from "../../Layout/Layout";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
+import InfoSection from "./components/InfoSection";
+import Loading from "../../components/Loading";
 
 const useStyles = createUseStyles((theme) => ({
   section: {
@@ -23,13 +25,21 @@ const useStyles = createUseStyles((theme) => ({
 
 function Home() {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
 
   return (
     <Layout>
-      <div className={classes.section}>
-        <Hero />
-      </div>
-      <FeaturesSection />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={classes.section}>
+            <Hero setLoading={setLoading} />
+          </div>
+          <InfoSection />
+          <FeaturesSection />
+        </>
+      )}
     </Layout>
   );
 }

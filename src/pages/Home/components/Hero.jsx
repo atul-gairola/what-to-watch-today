@@ -196,10 +196,9 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero() {
+function Hero({ setLoading }) {
   const [iconColor1, setIconColor1] = useState("#fff");
   const [iconColor2, setIconColor2] = useState("#fff");
-  const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
   const history = useHistory();
@@ -265,74 +264,70 @@ function Hero() {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <section className={classes.container}>
-          <div className={classes.heroContent}>
-            {/* <h1>Frustrated in deciding what to watch today?</h1>
+      <section className={classes.container}>
+        <div className={classes.heroContent}>
+          {/* <h1>Frustrated in deciding what to watch today?</h1>
             <p>
               This will help you in that. Get a random movie or show to watch
               and explore genres you've never seen before. Find hidden gems and
               widen your spectrum.
             </p> */}
-            <HeroIllustration
-              width={setIllustrationWidth()}
-              height={setIllustrationHeight()}
+          <HeroIllustration
+            width={setIllustrationWidth()}
+            height={setIllustrationHeight()}
+          />
+        </div>
+        <div className={classes.buttonContainer}>
+          <div
+            onClick={getRandomMovieWithoutPreference}
+            onMouseEnter={() => handleMouseHover("enter", 1)}
+            onMouseLeave={() => handleMouseHover("leave", 1)}
+            className={classes.button}
+          >
+            <RandomizeIcon
+              width={isMobile ? (isSmallMobile ? 40 : 60) : 99}
+              height={isMobile ? (isSmallMobile ? 42 : 62) : 92}
+              fill={iconColor1}
             />
+            <div>
+              <h3>Surprise Me</h3>
+              {!isMobile && (
+                <p>
+                  Feeling lucky today? Or maybe just wanna go with the flow?
+                  Click me to roll the dice and get a completely random show or
+                  movie to watch today.
+                </p>
+              )}
+            </div>
           </div>
-          <div className={classes.buttonContainer}>
+          <Link
+            to="/set-preferences"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
             <div
-              onClick={getRandomMovieWithoutPreference}
-              onMouseEnter={() => handleMouseHover("enter", 1)}
-              onMouseLeave={() => handleMouseHover("leave", 1)}
+              onMouseEnter={() => handleMouseHover("enter", 2)}
+              onMouseLeave={() => handleMouseHover("leave", 2)}
               className={classes.button}
             >
-              <RandomizeIcon
-                width={isMobile ? (isSmallMobile ? 40 : 60) : 99}
-                height={isMobile ? (isSmallMobile ? 42 : 62) : 92}
-                fill={iconColor1}
+              <PreferenceIcon
+                width={isMobile ? (isSmallMobile ? 40 : 60) : 100}
+                height={isMobile ? (isSmallMobile ? 40 : 60) : 83}
+                fill={iconColor2}
               />
               <div>
-                <h3>Surprise Me</h3>
+                <h3>I'll tailor it</h3>
                 {!isMobile && (
                   <p>
-                    Feeling lucky today? Or maybe just wanna go with the flow?
-                    Click me to roll the dice and get a completely random show
-                    or movie to watch today.
+                    Have a vague idea of what you want but can't exactly decide
+                    what to watch? Set up your preferences and get something as
+                    per your liking to watch today.
                   </p>
                 )}
               </div>
             </div>
-            <Link
-              to="/set-preferences"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              <div
-                onMouseEnter={() => handleMouseHover("enter", 2)}
-                onMouseLeave={() => handleMouseHover("leave", 2)}
-                className={classes.button}
-              >
-                <PreferenceIcon
-                  width={isMobile ? (isSmallMobile ? 40 : 60) : 100}
-                  height={isMobile ? (isSmallMobile ? 40 : 60) : 83}
-                  fill={iconColor2}
-                />
-                <div>
-                  <h3>I'll tailor it</h3>
-                  {!isMobile && (
-                    <p>
-                      Have a vague idea of what you want but can't exactly
-                      decide what to watch? Set up your preferences and get
-                      something as per your liking to watch today.
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-      )}
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

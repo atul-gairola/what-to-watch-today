@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { ReactComponent as ChooseIcon } from "../../../images/chooseIcon.svg";
 import { ReactComponent as GemIcon } from "../../../images/gemIcon.svg";
 import { ReactComponent as DiceIcon } from "../../../images/diceIcon.svg";
+import { scrollToTop } from "../../../utils";
 
 const useStyles = createUseStyles((theme) => ({
   section: {
@@ -14,6 +15,17 @@ const useStyles = createUseStyles((theme) => ({
     "& > h2": {
       textAlign: "center",
       marginBottom: 100,
+    },
+    display: "grid",
+    justifyItems: "center",
+    "& > button": {
+      marginTop: 100,
+      color: theme.color.secondary,
+      background: theme.color.main,
+      border: "none",
+      padding: theme.button.padding,
+      borderRadius: theme.button.borderRadius,
+      fontWeight: theme.button.fontWeight,
     },
   },
   featureWrapper: {
@@ -132,6 +144,7 @@ function FeaturesSection() {
           <p>Play it as a game and watch whatever comes up good or bad.</p>
         </div>
       </div>
+      <button onClick={scrollToTop}>Show me what to watch today</button>
     </section>
   );
 }

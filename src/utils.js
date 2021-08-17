@@ -104,3 +104,7 @@ export async function getSuggestion(hasPreferences, preferences) {
 export function getYear(str) {
   if (str) return str.split("-")[0];
 }
+
+export function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
