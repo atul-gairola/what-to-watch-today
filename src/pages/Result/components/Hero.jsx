@@ -151,7 +151,8 @@ function Hero({ details, type, imdbId, query, setLoading }) {
       const { typeOfContent, item } = await getSuggestion(true, {
         type,
         ratings: ratings.split(",").map((cur) => parseInt(cur)),
-        selectedGenres: genres.split(",").map((cur) => parseInt(cur)),
+        selectedGenres:
+          genres === "" ? [] : genres.split(",").map((cur) => parseInt(cur)),
       });
 
       history.push(
