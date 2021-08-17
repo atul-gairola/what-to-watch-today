@@ -17,6 +17,7 @@ const useStyles = createUseStyles((theme) => ({
     height: "100%",
     alignItems: "center",
     gridGap: "70px",
+    paddingBottom: 60,
   },
   heroContent: {
     "& > h1": {

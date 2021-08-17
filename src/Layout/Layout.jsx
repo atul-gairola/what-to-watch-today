@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme) => ({
     minHeight: "100vh",
   },
   container: {
-    padding: "50px",
+    // padding: "50px",
     height: "100%",
   },
 

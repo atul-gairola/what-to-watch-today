@@ -182,6 +182,33 @@ function Bibliography() {
         </a>{" "}
         Watch Later by masmooh from the Noun Project
       </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=dice&i=1671260"
+        >
+          Dice
+        </a>{" "}
+        by priyanka from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=gem&i=948918"
+        >
+          gem
+        </a>{" "}
+        by Lluisa Iborra from the Noun Project
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="https://thenounproject.com/search/?q=choose&i=86700"
+        >
+          choose
+        </a>{" "}
+        by Kirill Ulitin from the Noun Project
+      </p>
       <div>
         Icons made by{" "}
         <a

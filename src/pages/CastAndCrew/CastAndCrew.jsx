@@ -21,6 +21,19 @@ const useStyles = createUseStyles((theme) => ({
     justifyContent: "center",
     gridGap: 20,
   },
+  section: {
+    padding: 50,
+  },
+  [`@media(max-width: 400px)`]: {
+    section: {
+      padding: "30px",
+    },
+  },
+  [`@media(max-width: 300px)`]: {
+    section: {
+      padding: "20px",
+    },
+  },
 }));
 function CastAndCrew() {
   const [cast, setCast] = useState([]);
@@ -49,7 +62,7 @@ function CastAndCrew() {
       {loading ? (
         <Loading />
       ) : (
-        <section>
+        <section className={classes.section}>
           {cast.length > 0 && (
             <div className={classes.wrapper}>
               <h1>Cast</h1>

@@ -27,6 +27,19 @@ const useStyles = createUseStyles((theme) => ({
       border: "none",
     },
   },
+  section: {
+    padding: 50,
+  },
+  [`@media(max-width: 400px)`]: {
+    section: {
+      padding: "30px",
+    },
+  },
+  [`@media(max-width: 300px)`]: {
+    section: {
+      padding: "20px",
+    },
+  },
 }));
 
 function Preferences() {
@@ -74,45 +87,50 @@ function Preferences() {
 
   return (
     <Layout>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateRows: "auto 1fr",
-          height: "calc(100vh - 190px)",
-        }}
-      >
-        <div style={{ marginBottom: 20 }}>
-          <Stepper currentStep={currentStep} setCurrentStep={setCurrentStep} />
-        </div>
-        {currentStep === 0 && (
-          <TypeOfContent
-            type={type}
-            setType={setType}
-            setSelectedGenres={setSelectedGenres}
-          />
-        )}
-        {currentStep === 1 && (
-          <Genres
-            genreList={genreList}
-            setSelectedGenres={setSelectedGenres}
-            selectedGenres={selectedGenres}
-          />
-        )}
-        {currentStep === 2 && (
-          <Rating ratings={ratings} setRatings={setRatings} />
-        )}
-        <div className={classes.submitButton}>
-          <button onClick={handleSubmit}>
-            {loading ? (
-              <LoadingAnimation
-                width={40}
-                height={30}
-                fill={theme.color.secondary}
-              />
-            ) : (
-              "Let's Go"
-            )}
-          </button>
+      <div className={classes.section}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateRows: "auto 1fr",
+            height: "calc(100vh - 190px)",
+          }}
+        >
+          <div style={{ marginBottom: 20 }}>
+            <Stepper
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+            />
+          </div>
+          {currentStep === 0 && (
+            <TypeOfContent
+              type={type}
+              setType={setType}
+              setSelectedGenres={setSelectedGenres}
+            />
+          )}
+          {currentStep === 1 && (
+            <Genres
+              genreList={genreList}
+              setSelectedGenres={setSelectedGenres}
+              selectedGenres={selectedGenres}
+            />
+          )}
+          {currentStep === 2 && (
+            <Rating ratings={ratings} setRatings={setRatings} />
+          )}
+          <div className={classes.submitButton}>
+            <button onClick={handleSubmit}>
+              {loading ? (
+                <LoadingAnimation
+                  width={40}
+                  height={30}
+                  fill={theme.color.secondary}
+                />
+              ) : (
+                "Let's Go"
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </Layout>
