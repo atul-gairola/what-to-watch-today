@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css",
-    "main.js": "/what-to-watch-today/static/js/main.da4924f6.chunk.js",
-    "main.js.map": "/what-to-watch-today/static/js/main.da4924f6.chunk.js.map",
+    "main.css": "/what-to-watch-today/static/css/main.68892c8d.chunk.css",
+    "main.js": "/what-to-watch-today/static/js/main.459f2fa7.chunk.js",
+    "main.js.map": "/what-to-watch-today/static/js/main.459f2fa7.chunk.js.map",
     "runtime-main.js": "/what-to-watch-today/static/js/runtime-main.f6029183.js",
     "runtime-main.js.map": "/what-to-watch-today/static/js/runtime-main.f6029183.js.map",
-    "static/js/2.f9beb9ad.chunk.js": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js",
-    "static/js/2.f9beb9ad.chunk.js.map": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js.map",
+    "static/js/2.cf53f76a.chunk.js": "/what-to-watch-today/static/js/2.cf53f76a.chunk.js",
+    "static/js/2.cf53f76a.chunk.js.map": "/what-to-watch-today/static/js/2.cf53f76a.chunk.js.map",
     "index.html": "/what-to-watch-today/index.html",
-    "static/css/main.41c8f4c2.chunk.css.map": "/what-to-watch-today/static/css/main.41c8f4c2.chunk.css.map",
-    "static/js/2.f9beb9ad.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.f9beb9ad.chunk.js.LICENSE.txt",
+    "static/css/main.68892c8d.chunk.css.map": "/what-to-watch-today/static/css/main.68892c8d.chunk.css.map",
+    "static/js/2.cf53f76a.chunk.js.LICENSE.txt": "/what-to-watch-today/static/js/2.cf53f76a.chunk.js.LICENSE.txt",
     "static/media/Logo.cade1503.svg": "/what-to-watch-today/static/media/Logo.cade1503.svg",
     "static/media/backIcon.10c7b1b1.svg": "/what-to-watch-today/static/media/backIcon.10c7b1b1.svg",
     "static/media/closeIcon.586835ad.svg": "/what-to-watch-today/static/media/closeIcon.586835ad.svg",
     "static/media/forwardIcon.53f90b75.svg": "/what-to-watch-today/static/media/forwardIcon.53f90b75.svg",
     "static/media/google-icon.f20ab2d4.svg": "/what-to-watch-today/static/media/google-icon.f20ab2d4.svg",
     "static/media/hamburgerIcon.d74deddb.svg": "/what-to-watch-today/static/media/hamburgerIcon.d74deddb.svg",
-    "static/media/heartIcon.d52b3b4a.svg": "/what-to-watch-today/static/media/heartIcon.d52b3b4a.svg",
+    "static/media/heroIllustration (4).72f24161.svg": "/what-to-watch-today/static/media/heroIllustration (4).72f24161.svg",
     "static/media/loadingAnimation.98265d82.svg": "/what-to-watch-today/static/media/loadingAnimation.98265d82.svg",
     "static/media/logoutIcon.3d72b7ce.svg": "/what-to-watch-today/static/media/logoutIcon.3d72b7ce.svg",
     "static/media/movieIcon.e8145edd.svg": "/what-to-watch-today/static/media/movieIcon.e8145edd.svg",
@@ -25,14 +25,12 @@
     "static/media/restartIcon.47db2507.svg": "/what-to-watch-today/static/media/restartIcon.47db2507.svg",
     "static/media/showIcon.d6f923be.svg": "/what-to-watch-today/static/media/showIcon.d6f923be.svg",
     "static/media/starIcon.537f4cd3.svg": "/what-to-watch-today/static/media/starIcon.537f4cd3.svg",
-    "static/media/userIcon.0bbe5b72.svg": "/what-to-watch-today/static/media/userIcon.0bbe5b72.svg",
-    "static/media/watchLaterIcon.b1a622e7.svg": "/what-to-watch-today/static/media/watchLaterIcon.b1a622e7.svg",
-    "static/media/watchedIcon.d62d9476.svg": "/what-to-watch-today/static/media/watchedIcon.d62d9476.svg"
+    "static/media/userIcon.0bbe5b72.svg": "/what-to-watch-today/static/media/userIcon.0bbe5b72.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f6029183.js",
-    "static/js/2.f9beb9ad.chunk.js",
-    "static/css/main.41c8f4c2.chunk.css",
-    "static/js/main.da4924f6.chunk.js"
+    "static/js/2.cf53f76a.chunk.js",
+    "static/css/main.68892c8d.chunk.css",
+    "static/js/main.459f2fa7.chunk.js"
   ]
 }
