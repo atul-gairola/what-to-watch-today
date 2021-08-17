@@ -6,6 +6,7 @@ import axios from "axios";
 import Home from "./pages/Home/Home";
 import Result from "./pages/Result/Result";
 import Preferences from "./pages/Preferences/Preferences";
+import CastAndCrew from "./pages/CastAndCrew/CastAndCrew";
 
 const useStyles = createUseStyles((theme) => ({
   body: {
@@ -50,7 +51,12 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/set-preferences" exact component={Preferences} />
-        <Route path="/watch-today/:type/:id" component={Result} />
+        <Route path="/watch-today/:type/:id" exact component={Result} />
+        <Route
+          path="/watch-today/:type/:id/cast-and-crew"
+          exact
+          component={CastAndCrew}
+        />
       </Switch>
     </div>
   );

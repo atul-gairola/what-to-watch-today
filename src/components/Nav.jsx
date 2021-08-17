@@ -132,11 +132,11 @@ function Nav() {
             <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
           </Link>
         </div>
-        <div className={classes.linkContainer}>
+        {/* <div className={classes.linkContainer}>
           <Link to="/" className={classes.navLink}>Liked Content</Link>
           <Link to="/" className={classes.navLink}>Watched Content</Link>
           <Link to="/" className={classes.navLink}>Watch List</Link>
-        </div>
+        </div> */}
         <div className={classes.navEndContainer}>
           {/* <div>
             <ThemeToggle />

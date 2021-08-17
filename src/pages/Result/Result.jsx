@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import { createUseStyles } from "react-jss";
 
@@ -30,107 +30,71 @@ function Result() {
   const [credits, setCredits] = useState();
   const [videos, setVideos] = useState([]);
   const [imdbId, setImdbId] = useState("");
-  const [reload, setReload] = useState(0);
 
   const { id, type } = useParams();
   const query = useQuery();
   const classes = useStyles();
+  const history = useHistory();
 
+  const fetchDetails = async (type, id) => {
+    setLoading(true);
 
+    // get general details
+    const { data: details } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    );
+
+    // get watch providers
+    const { data: watchProviders } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&watch_region=${
+        JSON.parse(localStorage.getItem("location")).countryCode
+      }`
+    );
+
+    // get credits
+    const { data: credits } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    );
+
+    // get videos
+    const { data: videos } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US
+      `
+    );
+
+    // get imdb id
+    const {
+      data: { imdb_id },
+    } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}/external_ids?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    );
+
+    setDetails(details);
+    setWatchProviders(watchProviders.results);
+    setVideos(videos.results);
+    setCredits(credits);
+    setImdbId(imdb_id);
+    // console.log({ details, watchProviders, images, videos, credits });
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      setLoading(true);
-  
-      // get general details
-      const { data: details } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      // get watch providers
-      const { data: watchProviders } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${
-          process.env.REACT_APP_TMDB_API_KEY
-        }&watch_region=${
-          JSON.parse(localStorage.getItem("location")).countryCode
-        }`
-      );
-  
-      // get credits
-      const { data: credits } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      // get videos
-      const { data: videos } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US
-        `
-      );
-  
-      // get imdb id
-      const {
-        data: { imdb_id },
-      } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/external_ids?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      setDetails(details);
-      setWatchProviders(watchProviders.results);
-      setVideos(videos.results);
-      setCredits(credits);
-      setImdbId(imdb_id);
-      // console.log({ details, watchProviders, images, videos, credits });
-      setLoading(false);
-    };
-    fetchDetails();
+    const unlisten = history.listen((result) => {
+      if (result.pathname) {
+        const type = result.pathname.split("/")[2];
+        const id = result.pathname.split("/")[3];
+        fetchDetails(type, id);
+      }
+    });
+
+    return unlisten;
   }, []);
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      setLoading(true);
-  
-      // get general details
-      const { data: details } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      // get watch providers
-      const { data: watchProviders } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${
-          process.env.REACT_APP_TMDB_API_KEY
-        }&watch_region=${
-          JSON.parse(localStorage.getItem("location")).countryCode
-        }`
-      );
-  
-      // get credits
-      const { data: credits } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      // get videos
-      const { data: videos } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US
-        `
-      );
-  
-      // get imdb id
-      const {
-        data: { imdb_id },
-      } = await axios.get(
-        `https://api.themoviedb.org/3/${type}/${id}/external_ids?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-      );
-  
-      setDetails(details);
-      setWatchProviders(watchProviders.results);
-      setVideos(videos.results);
-      setCredits(credits);
-      setImdbId(imdb_id);
-      // console.log({ details, watchProviders, images, videos, credits });
-      setLoading(false);
-    };
-    fetchDetails();
-  }, [reload]);
+    fetchDetails(type, id);
+  }, []);
 
   return (
     <ResultLayout>
@@ -144,17 +108,16 @@ function Result() {
             type={type}
             imdbId={imdbId}
             query={query}
-            setReload={setReload}
             setLoading={setLoading}
           />
           <div className={classes.container}>
             <div>
               {videos.length > 0 && <ClipsSection videos={videos} />}
               {credits && credits.cast.length > 0 && (
-                <CastSection cast={credits.cast} />
+                <CastSection cast={credits.cast} id={id} type={type} />
               )}
               {credits && credits.crew.length > 0 && (
-                <CrewSection crew={credits.crew} />
+                <CrewSection crew={credits.crew} id={id} type={type} />
               )}
             </div>
             <div>

@@ -124,7 +124,7 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-function Hero({ details, type, imdbId, query, setReload, setLoading }) {
+function Hero({ details, type, imdbId, query, setLoading }) {
   const classes = useStyles();
   const { images } = useConfig();
   const history = useHistory();
@@ -154,13 +154,10 @@ function Hero({ details, type, imdbId, query, setReload, setLoading }) {
       history.push(
         `/watch-today/${typeOfContent}/${item.id}?method=preferences&type=${type}&genres=${genres}&ratings=${ratings}`
       );
-
-      setReload((prev) => (prev === 0 ? 1 : 0));
     } else {
       setLoading(true);
       const { typeOfContent, item } = await getSuggestion();
       history.push(`/watch-today/${typeOfContent}/${item.id}?method=random`);
-      setReload((prev) => (prev === 0 ? 1 : 0));
     }
   }
 
@@ -250,11 +247,11 @@ function Hero({ details, type, imdbId, query, setReload, setLoading }) {
           </Link>
         </div>
       </div>
-      <div className={classes.actionContainer}>
+      {/* <div className={classes.actionContainer}>
         <UserItem Icon={WatchedIcon} />
         <UserItem Icon={HeartIcon} />
         <UserItem Icon={WatchLaterIcon} />
-      </div>
+      </div> */}
     </section>
   );
 }

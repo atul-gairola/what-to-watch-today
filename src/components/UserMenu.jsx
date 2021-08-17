@@ -74,10 +74,10 @@ function UserMenu({ name, image }) {
     return (
       <ClickAwayListener onClickAway={() => setOpen(false)}>
         <ul className={classes.dropdownMenu}>
-          <DropdownItem LeftIcon={UserIcon}>
+          {/* <DropdownItem LeftIcon={UserIcon}>
             {" "}
             <p>Profile</p>{" "}
-          </DropdownItem>
+          </DropdownItem> */}
           <DropdownItem
             onClick={handleLogout}
             type="danger"

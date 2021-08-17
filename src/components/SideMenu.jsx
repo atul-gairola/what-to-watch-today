@@ -131,10 +131,10 @@ function SideMenu({ setOpenSideMenu, handleModal }) {
         )}
       </section>
       <ul className={classes.menu}>
-        <MenuItem>Profile</MenuItem>
+        {/* <MenuItem>Profile</MenuItem>
         <MenuItem>Preferences</MenuItem>
         <MenuItem>Watched</MenuItem>
-        <MenuItem>Liked</MenuItem>
+        <MenuItem>Liked</MenuItem> */}
         <MenuItem onClick={handleLogout} type="danger">
           Logout
         </MenuItem>

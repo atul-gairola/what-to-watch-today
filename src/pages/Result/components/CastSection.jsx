@@ -1,5 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { Link } from "react-router-dom";
 
 import { useConfig } from "../../../contexts/ConfigContext";
 import personPlaceholder from "../../../images/placeholderImage.png";
@@ -61,13 +62,17 @@ const useStyles = createUseStyles((theme) => ({
     position: "relative",
     zIndex: 2,
     gridTemplateColumns: "1fr 1fr",
+    "& a": {
+      display: "inline-block",
+      justifySelf: "end",
+    },
     "& button": {
       justifySelf: "end",
       background: "transparent",
       border: "none",
       color: theme.color.main,
       fontWeight: 600,
-      fontSize: 16
+      fontSize: 16,
     },
   },
 }));
@@ -97,14 +102,18 @@ function Cast({ details, imagesConfig }) {
   );
 }
 
-function CastSection({ cast }) {
+function CastSection({ cast, id, type }) {
   const classes = useStyles();
   const { images } = useConfig();
   return (
     <section className={classes.section}>
       <div className={classes.heading}>
         <h2>Cast</h2>
-        <button>see all</button>
+        {cast.length > 5 && (
+          <Link to={`/watch-today/${type}/${id}/cast-and-crew`}>
+            <button>see all</button>
+          </Link>
+        )}
       </div>
       <div className={classes.container}>
         {cast.slice(0, 10).map((cur, i) => (
