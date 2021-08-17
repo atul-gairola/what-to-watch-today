@@ -7,9 +7,9 @@ import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
-import { ReactComponent as HeartIcon } from "../../../images/heartIcon.svg";
-import { ReactComponent as WatchedIcon } from "../../../images/watchedIcon.svg";
-import { ReactComponent as WatchLaterIcon } from "../../../images/watchLaterIcon.svg";
+// import { ReactComponent as HeartIcon } from "../../../images/heartIcon.svg";
+// import { ReactComponent as WatchedIcon } from "../../../images/watchedIcon.svg";
+// import { ReactComponent as WatchLaterIcon } from "../../../images/watchLaterIcon.svg";
 
 import moviePlaceholder from "../../../images/moviePlaceholder.png";
 import { getSuggestion } from "../../../utils";

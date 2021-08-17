@@ -18,6 +18,7 @@ const useStyles = createUseStyles((theme) => ({
   container: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, 200px)",
+    justifyContent: "center",
     gridGap: 20,
   },
 }));
@@ -35,7 +36,6 @@ function CastAndCrew() {
         `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
       );
 
-      console.log(credits);
       setCast(credits.cast);
       setCrew(credits.crew);
       setLoading(false);

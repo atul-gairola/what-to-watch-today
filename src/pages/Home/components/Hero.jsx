@@ -210,9 +210,6 @@ function Hero() {
   const isSmallMobile = useMediaQuery({
     query: `(max-device-width: 400px)`,
   });
-  const isTablet = useMediaQuery({
-    query: `(max-device-width: ${theme.viewports.tablet})`,
-  });
   const isSmallTablet = useMediaQuery({
     query: `(max-device-width: ${theme.viewports.smallTablet})`,
   });
