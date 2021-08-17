@@ -14,6 +14,7 @@ const useStyles = createUseStyles((theme) => ({
   },
   stepsContainer: {
     display: "flex",
+    justifyContent: "center",
   },
   step: {
     textDecoration: "none",
@@ -135,13 +136,13 @@ function Stepper({ currentStep, setCurrentStep }) {
   }
 
   function handleNext() {
-    if (currentStep === 3) {
+    if (currentStep === 2) {
       return;
     }
     setCurrentStep(currentStep + 1);
   }
 
-  const steps = ["Type", "Genres", "Ratings", "OTT"];
+  const steps = ["Type", "Genres", "Ratings"];
 
   function Step({ children, isLast, stepNum, ...props }) {
     return (
