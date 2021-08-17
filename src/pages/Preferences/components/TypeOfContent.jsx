@@ -35,9 +35,9 @@ const useStyles = createUseStyles((theme) => ({
     },
   },
   selected: {
-    transform: "scale(1.2)",
+    transform: "scale(1.4)",
     "&:hover": {
-      transform: "scale(1.2)",
+      transform: "scale(1.4)",
     },
   },
   [`@media (max-width: ${theme.viewports.smallTablet})`]: {
