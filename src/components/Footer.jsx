@@ -44,6 +44,48 @@ const useStyles = createUseStyles((theme) => ({
       },
     },
   },
+  credits: {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+  },
+  [`@media(max-width: 850px)`]: {
+    container: {
+      flexDirection: "column",
+      justifyItems: "center",
+    },
+    credits: {
+      margin: "20px 0",
+      position: "relative",
+      left: "0%",
+      top: "0%",
+      transform: "none",
+    },
+    buttonContainer: {
+      display: "grid",
+      gridTemplateColumns: "auto auto auto",
+      alignItems: "center",
+      justifyContent: "center",
+      justifyItems: "center",
+      transform: "translateX(10px)",
+    },
+    logoContainer: {
+      "&  h3": {
+        marginLeft: 0,
+      },
+      "& > a": {
+        display: "grid",
+        justifyItems: "center",
+        gridGap: 10,
+      },
+    },
+  },
+  [`@media(max-width: 370px)`]: {
+    container: {
+      padding: "10px 50px",
+    },
+  },
 }));
 
 function Footer() {
@@ -59,14 +101,7 @@ function Footer() {
             <h3>what2watchtoday</h3>
           </Link>
         </div>
-        <p
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
+        <p className={classes.credits}>
           Made with ❤️ by{" "}
           <a
             href="https://www.linkedin.com/in/atul-gairola-06875319b/"

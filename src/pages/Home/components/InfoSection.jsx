@@ -29,6 +29,13 @@ const useStyles = createUseStyles((theme) => ({
       marginTop: 50,
     },
   },
+  [`@media (max-width: ${theme.viewports.mobile})`]:{
+    section: {
+      "& > p": {
+        maxWidth: "100%",
+      },
+    }
+  }
 }));
 
 function InfoSection() {
