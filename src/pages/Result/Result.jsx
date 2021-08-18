@@ -76,7 +76,6 @@ function Result() {
     setVideos(videos.results);
     setCredits(credits);
     setImdbId(imdb_id);
-    // console.log({ details, watchProviders, images, videos, credits });
     setLoading(false);
   };
 

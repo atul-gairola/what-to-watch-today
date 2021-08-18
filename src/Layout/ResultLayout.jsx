@@ -20,6 +20,7 @@ const useStyles = createUseStyles((theme) => ({
   },
   container: {
     marginBottom: 50,
+    minHeight: "100vh"
   },
 
   [`@media(max-width: 400px)`]: {
