@@ -1,15 +1,19 @@
-import React from "react";
-import { createUseStyles } from "react-jss";
+import React, { useState, useEffect } from "react";
+import { createUseStyles, useTheme } from "react-jss";
 import { useHistory, Link } from "react-router-dom";
 import { useConfig } from "../../../contexts/ConfigContext";
+import clsx from "clsx";
+import firebase from "firebase/app";
 
 import { getYear } from "../../../utils";
 import { ReactComponent as StarIcon } from "../../../images/starIcon.svg";
 import { ReactComponent as RestartIcon } from "../../../images/restartIcon.svg";
 import { ReactComponent as PreferenceIcon } from "../../../images/preference-icon.svg";
-// import { ReactComponent as HeartIcon } from "../../../images/heartIcon.svg";
-// import { ReactComponent as WatchedIcon } from "../../../images/watchedIcon.svg";
-// import { ReactComponent as WatchLaterIcon } from "../../../images/watchLaterIcon.svg";
+import { ReactComponent as HeartIcon } from "../../../images/heartIcon.svg";
+import { ReactComponent as WatchedIcon } from "../../../images/watchedIcon.svg";
+import { ReactComponent as WatchLaterIcon } from "../../../images/watchLaterIcon.svg";
+import { useAuth } from "../../../contexts/AuthContext";
+import { db } from "../../../config/firebase";
 
 import moviePlaceholder from "../../../images/moviePlaceholder.png";
 import { getSuggestion } from "../../../utils";
@@ -122,17 +126,105 @@ const useStyles = createUseStyles((theme) => ({
       filter: "brightness(100%)",
     },
   },
+  liked: {
+    opacity: 1,
+    filter: "brightness(100%)",
+    border: "2px solid " + theme.color.error,
+  },
+  watchLater: {
+    opacity: 1,
+    filter: "brightness(100%)",
+    border: "2px solid " + theme.color.success,
+  },
 }));
 
 function Hero({ details, type, imdbId, query, setLoading }) {
+  const [liked, setLiked] = useState(false);
+  const [watchLater, setWatchLater] = useState(false);
+  const theme = useTheme();
   const classes = useStyles();
   const { images } = useConfig();
   const history = useHistory();
+  const { currentUser } = useAuth();
 
-  function UserItem({ Icon }) {
+  async function handleLike() {
+    const userDocRef = db.collection("users").doc(currentUser.id);
+    if (liked) {
+      await userDocRef.update({
+        liked: firebase.firestore.FieldValue.arrayRemove({
+          id: details.id,
+          type: type,
+        }),
+      });
+    } else {
+      await userDocRef.update({
+        liked: firebase.firestore.FieldValue.arrayUnion({
+          id: details.id,
+          type: type,
+        }),
+      });
+    }
+    setLiked((prev) => !prev);
+  }
+
+  async function handleWatchLater() {
+    const userDocRef = db.collection("users").doc(currentUser.id);
+    if (watchLater) {
+      await userDocRef.update({
+        watchLater: firebase.firestore.FieldValue.arrayRemove({
+          id: details.id,
+          type: type,
+        }),
+      });
+    } else {
+      await userDocRef.update({
+        watchLater: firebase.firestore.FieldValue.arrayUnion({
+          id: details.id,
+          type: type,
+        }),
+      });
+    }
+    setWatchLater((prev) => !prev);
+  }
+
+  useEffect(() => {
+    if (currentUser) {
+      if (
+        currentUser.liked &&
+        currentUser.liked.map((cur) => cur.id).includes(details.id)
+      ) {
+        setLiked(true);
+      }
+      if (
+        currentUser.watchLater &&
+        currentUser.watchLater.map((cur) => cur.id).includes(details.id)
+      ) {
+        setWatchLater(true);
+      }
+    }
+  }, []);
+
+  function UserItem({ Icon, liked, watchLater, ...props }) {
     return (
-      <div className={classes.userItem}>
-        <Icon fill="#fff" width={20} height={20} />
+      <div
+        {...props}
+        className={clsx(
+          classes.userItem,
+          liked && classes.liked,
+          watchLater && classes.watchLater
+        )}
+      >
+        <Icon
+          fill={
+            liked
+              ? theme.color.error
+              : watchLater
+              ? theme.color.success
+              : "#fff"
+          }
+          width={20}
+          height={20}
+        />
       </div>
     );
   }
@@ -142,9 +234,6 @@ function Hero({ details, type, imdbId, query, setLoading }) {
       const type = query.get("type");
       const genres = query.get("genres");
       const ratings = query.get("ratings");
-
-      console.log(genres.split(",").map((cur) => parseInt(cur)));
-      console.log(ratings.split(",").map((cur) => parseInt(cur)));
 
       setLoading(true);
 
@@ -254,11 +343,17 @@ function Hero({ details, type, imdbId, query, setLoading }) {
           </Link>
         </div>
       </div>
-      {/* <div className={classes.actionContainer}>
-        <UserItem Icon={WatchedIcon} />
-        <UserItem Icon={HeartIcon} />
-        <UserItem Icon={WatchLaterIcon} />
-      </div> */}
+      {currentUser && (
+        <div className={classes.actionContainer}>
+          {/* <UserItem Icon={WatchedIcon} /> */}
+          <UserItem onClick={handleLike} liked={liked} Icon={HeartIcon} />
+          <UserItem
+            onClick={handleWatchLater}
+            watchLater={watchLater}
+            Icon={WatchLaterIcon}
+          />
+        </div>
+      )}
     </section>
   );
 }
