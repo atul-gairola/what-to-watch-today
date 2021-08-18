@@ -34,6 +34,13 @@ const useStyles = createUseStyles((theme) => ({
       },
     },
   },
+  logo: {
+    transition: "0.7s",
+    display: "inline-block",
+    "&:hover": {
+      transform: "translateY(-5px)",
+    },
+  },
   userItem: {
     width: 45,
     height: 45,
@@ -133,9 +140,11 @@ function Nav() {
     <>
       <nav className={classes.navContainer}>
         <div style={{ flexGrow: 1 }}>
-          <Link to="/">
-            <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
-          </Link>
+          <div className={classes.logo}>
+            <Link to="/">
+              <Logo width="45" height="50" viewBox="0 0 59 70" fill="#fff" />
+            </Link>
+          </div>
         </div>
         {/* <div className={classes.linkContainer}>
           <Link to="/" className={classes.navLink}>Liked Content</Link>
