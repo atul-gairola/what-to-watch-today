@@ -343,17 +343,17 @@ function Hero({ details, type, imdbId, query, setLoading }) {
           </Link>
         </div>
       </div>
-      {currentUser && (
-        <div className={classes.actionContainer}>
+      {/* {currentUser && ( */}
+        {/* <div className={classes.actionContainer}> */}
           {/* <UserItem Icon={WatchedIcon} /> */}
-          <UserItem onClick={handleLike} liked={liked} Icon={HeartIcon} />
+          {/* <UserItem onClick={handleLike} liked={liked} Icon={HeartIcon} />
           <UserItem
             onClick={handleWatchLater}
             watchLater={watchLater}
             Icon={WatchLaterIcon}
-          />
-        </div>
-      )}
+          /> */}
+        {/* </div> */}
+      {/* )} */}
     </section>
   );
 }

@@ -72,7 +72,7 @@ const useStyles = createUseStyles((theme) => ({
     },
     userSection: {
       margin: "0 30px",
-    }
+    },
   },
   [`@media(max-width: 300px)`]: {
     header: {
@@ -80,7 +80,7 @@ const useStyles = createUseStyles((theme) => ({
     },
     userSection: {
       margin: "0 20px",
-    }
+    },
   },
 }));
 
@@ -108,7 +108,9 @@ function SideMenu({ setOpenSideMenu, handleModal }) {
   }
 
   return (
-    <div className={classes.container}>
+    <div
+      className={classes.container}
+    >
       <header className={classes.header}>
         <div style={{ marginTop: 10 }} onClick={() => setOpenSideMenu(false)}>
           <CloseIcon width={30} height={30} fill={theme.color.main} />
@@ -125,20 +127,40 @@ function SideMenu({ setOpenSideMenu, handleModal }) {
             <p style={{ marginTop: 5 }}>{currentUser.name.toLowerCase()}</p>
           </>
         ) : (
-          <button className={classes.authButton} onClick={handleModal}>
-            Login / Signup
-          </button>
+          <>
+            {!currentUser && (
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 500,
+                  textAlign: "center",
+                  marginBottom: 40,
+                }}
+              >
+                <p>Hey!</p>
+                <p>
+                  Sign into your account or create one to use more personalized
+                  features
+                </p>
+              </div>
+            )}
+            <button className={classes.authButton} onClick={handleModal}>
+              Login / Signup
+            </button>
+          </>
         )}
       </section>
-      <ul className={classes.menu}>
-        {/* <MenuItem>Profile</MenuItem>
+      {currentUser && (
+        <ul className={classes.menu}>
+          {/* <MenuItem>Profile</MenuItem>
         <MenuItem>Preferences</MenuItem>
         <MenuItem>Watched</MenuItem>
         <MenuItem>Liked</MenuItem> */}
-        <MenuItem onClick={handleLogout} type="danger">
-          Logout
-        </MenuItem>
-      </ul>
+          <MenuItem onClick={handleLogout} type="danger">
+            Logout
+          </MenuItem>
+        </ul>
+      )}
     </div>
   );
 }

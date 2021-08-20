@@ -1,6 +1,11 @@
 # Motivation 💪
 
-This is made as a gift for someone. Everytime we plan on watching something together, most of our time would go into deciding what to watch and what not to. It's such a hectic decision and the last thing one would want to exhaust themselves upon. So I came up with what-to-watch-today. Just sit back and let it give you a something to watch today 👓
+Everyday in the evening you have your dinner ready and are set to watch something, but you keep scrolling through your OTT platform for 30-45 min just to find that one thing to watch. Same here. I thought why to use this brain power for such mere tasks. So here is **what to watch today**. Just click one button and watch whatever comes up. It's fun and exciting and gives you something to look forward to everyday (not that i recommend wasting your time watching movies everyday).
+
+# Tech Stack 💻
+
+- **React**
+-
 
 # Getting Started with Create React App
 
